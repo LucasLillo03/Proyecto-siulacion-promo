@@ -11,6 +11,8 @@ va_start(parameters,t);
 PCaudalNulo = var_arg(parameters, double);
 sigma_arr = var_arg(parameters, double);
 
+actual = 0.0;
+sigma = sigma_arr;
 }
 double gen_orden_medica::ta(double t) {
 //This function returns a double.
@@ -18,6 +20,16 @@ return sigma;
 }
 void gen_orden_medica::dint(double t) {
 
+double generado = (double)rand() / (double)RAND_MAX;
+
+if(generado <= PCaudalNulo) {
+	actual = 0.0;
+} else {
+	double u = ((double)rand() / (double)RAND_MAX) + 1e-7;
+	actual = nuevoCaudal;
+}
+
+sigma = sigma_arr;
 }
 void gen_orden_medica::dext(Event x, double t) {
 //The input event is in the 'x' variable.
