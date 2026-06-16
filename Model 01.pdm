@@ -38,5 +38,23 @@ Coupled
                 sigma_arr = Val; 1800 ; 
                 }
             }
+        Atomic
+            {
+            Name = sen_flujo
+            Ports = 1 ; 1
+            Path = 
+            Description = Atomic DEVS model
+            Graphic
+                {
+                Position = -4305 ; -1335
+                Dimension = 675 ; 720
+                Direction = Right
+                Color = 15
+                Icon = None
+                }
+            Parameters
+                {
+                }
+            }
         }
     }

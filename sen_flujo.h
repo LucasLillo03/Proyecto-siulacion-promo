@@ -13,6 +13,12 @@ class sen_flujo: public Simulator {
 // output variables
 // and parameters
 
+double caudalMedido; 
+double sigma; 
+
+double sensorFlujo;
+
+double periodoMuestreoFlujo; 
 public:
 	sen_flujo(const char *n): Simulator(n) {};
 	void init(double, ...);
