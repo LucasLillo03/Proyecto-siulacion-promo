@@ -10,6 +10,7 @@ va_start(parameters,t);
 
 PCaudalNulo = var_arg(parameters, double);
 sigma_arr = var_arg(parameters, double);
+media_arr = var_arg(parameters, double);
 
 actual = 0.0;
 sigma = sigma_arr;
@@ -26,6 +27,10 @@ if(generado <= PCaudalNulo) {
 	actual = 0.0;
 } else {
 	double u = ((double)rand() / (double)RAND_MAX) + 1e-7;
+	double nuevoCaudal = -(1/media_arr) * log(u);
+	
+	if (nuevoCaudal > 200.0) nuevoCaudal = 200.0;
+	
 	actual = nuevoCaudal;
 }
 
@@ -47,7 +52,7 @@ Event gen_orden_medica::lambda(double t) {
 //     %NroPort% is the port number (from 0 to n-1)
 
 
-return Event();
+return Event(&actual, 0);
 }
 void gen_orden_medica::exit() {
 //Code executed at the end of the simulation.

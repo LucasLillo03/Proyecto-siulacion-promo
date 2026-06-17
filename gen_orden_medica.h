@@ -6,6 +6,8 @@
 #include "simulator.h"
 #include "event.h"
 #include "stdarg.h"
+#include "tipos.h"
+#include <cmath>
 
 
 
@@ -13,7 +15,6 @@ class gen_orden_medica: public Simulator {
 // Declare the state,
 // output variables
 // and parameters
-
 // Variables de Estado
 double actual;
 double sigma;
@@ -21,9 +22,13 @@ double sigma;
 // Variable de salida
 double y; 
 
-// Parámetros de simulación
+// Parï¿½metros de simulaciï¿½n
 double PCaudalNulo;
 double sigma_arr;
+double media_arr;
+
+
+
 
 
 public:
