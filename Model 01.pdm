@@ -42,7 +42,7 @@ Coupled
             {
             Name = sen_flujo
             Ports = 1 ; 1
-            Path = 
+            Path = mySources/sen_flujo.h
             Description = Atomic DEVS model
             Graphic
                 {
@@ -54,6 +54,8 @@ Coupled
                 }
             Parameters
                 {
+                periodoMuestreoFlujo = Val; 1 ; 
+                desvioCaudal = Val; 5 ; 
                 }
             }
         }

@@ -1,4 +1,4 @@
-//CPP:mysource/sen_flujo.cpp
+//CPP:mysources/sen_flujo.cpp
 #if !defined sen_flujo_h
 #define sen_flujo_h
 
@@ -20,6 +20,7 @@ double sensorFlujo;
 
 double periodoMuestreoFlujo; 
 double desvioCaudal; 
+
 
 
 public:
