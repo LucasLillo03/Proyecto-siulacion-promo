@@ -10,7 +10,7 @@ va_start(parameters,t);
 
 PCaudalNulo = va_arg(parameters, double);
 sigma_arr = va_arg(parameters, double);
-media_arr = va_arg(parameters, double);
+mediaCaudal = va_arg(parameters, double);
 
 actual = 0.0;
 sigma = sigma_arr;
