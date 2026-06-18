@@ -1,4 +1,4 @@
-//CPP:mySource/Proyecto-siulacion-promo/sen_flujo.cpp
+//CPP:mysources/sen_flujo.cpp
 #if !defined sen_flujo_h
 #define sen_flujo_h
 
@@ -19,6 +19,10 @@ double sigma;
 double sensorFlujo;
 
 double periodoMuestreoFlujo; 
+double desvioCaudal; 
+
+
+
 public:
 	sen_flujo(const char *n): Simulator(n) {};
 	void init(double, ...);

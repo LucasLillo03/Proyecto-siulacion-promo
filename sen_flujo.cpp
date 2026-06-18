@@ -7,7 +7,8 @@ va_start(parameters,t);
 //where:
 //      %Name% is the parameter name
 //	%Type% is the parameter type
-periodoMuestreoFlujo = var_arg(parameters, double);
+periodoMuestreoFlujo = va_arg(parameters, double);
+desvioCaudal = va_arg(parameters, double);
 
 caudalMedido = 0; 
 sigma = periodoMuestreoFlujo;
@@ -21,17 +22,28 @@ double sen_flujo::ta(double t) {
 return sigma; 	
 }
 void sen_flujo::dint(double t) {
-caudalMedido = //valor random generado a partir del caudal actual en una distribucion normal;
+putScilabVar("nuevoCaudalMedidoInterno", caudalMedido);
+putScilabVar("desvioCaudal", desvioCaudal);
+
+char comandoScilab[] = "grand(1,1, 'nor', nuevoCaudalMedidoInterno, desvioCaudal)"; 
+
+double nuevoCaudalMedidoInterno = executeScilabJob(comandoScilab,true);
+
+caudalMedido = nuevoCaudalMedidoInterno;
 sigma = periodoMuestreoFlujo; 
 }
 void sen_flujo::dext(Event x, double t) {
-//The input event is in the 'x' variable.
-//where:
-//     'x.value' is the value (pointer to void)
-//     'x.port' is the port number
-//     'e' is the time elapsed since last transition
-caudalMedido = //valor random generado a partir del caudal de entrada en una distribucion normal; 
-sigma = sigma - e;  
+    double valorCaudal = *(double*)x.value; 
+
+    putScilabVar("nuevoCaudalMedidoExterno", valorCaudal);
+    putScilabVar("desvioCaudal", desvioCaudal);
+
+    char comandoScilab[] = "grand(1,1, 'nor', nuevoCaudalMedidoExterno, desvioCaudal)"; 
+
+    double resultadoScilab = executeScilabJob(comandoScilab, true);
+
+    caudalMedido = resultadoScilab; 
+    sigma = sigma - e;  
 }
 Event sen_flujo::lambda(double t) {
 //This function returns an Event:

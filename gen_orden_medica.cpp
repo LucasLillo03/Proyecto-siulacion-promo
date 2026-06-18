@@ -8,9 +8,9 @@ va_start(parameters,t);
 //      %Name% is the parameter name
 //	%Type% is the parameter type
 
-PCaudalNulo = var_arg(parameters, double);
-sigma_arr = var_arg(parameters, double);
-mediaCaudal = var_arg(parameters, double);
+PCaudalNulo = va_arg(parameters, double);
+sigma_arr = va_arg(parameters, double);
+media_arr = va_arg(parameters, double);
 
 actual = 0.0;
 sigma = sigma_arr;

@@ -1,4 +1,4 @@
-//CPP:mySource/Proyecto-siulacion-promo/sen_confirmacion_enfermero.cpp
+//CPP:mysources/sen_confirmacion_enfermero.cpp
 #if !defined sen_confirmacion_enfermero_h
 #define sen_confirmacion_enfermero_h
 
@@ -16,9 +16,14 @@ class sen_confirmacion_enfermero: public Simulator {
 AlarmaCaudal notificacionAlarma;
 
 double sigma;  	
-double confirmacionEnfermero; 
-double mediaConfirmacion;
+
+bool confirmacionEnfermero; 
+
 double desvioConfirmacion;
+double mediaConfirmacion;
+
+
+
 
 public:
 	sen_confirmacion_enfermero(const char *n): Simulator(n) {};
