@@ -55,7 +55,12 @@ Event sen_confirmacion_enfermero::lambda(double t) {
 //     %NroPort% is the port number (from 0 to n-1)
 
 
-return Event(&confirmacionEnfermero, 0);
+return Event(&sigma, 0);
+
+// PARA DEBUG
+
+// return Event(&desvioConfirmacion,0);
+// return Event(&mediaConfirmacion,0);
 }
 void sen_confirmacion_enfermero::exit() {
 //Code executed at the end of the simulation.

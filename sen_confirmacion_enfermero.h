@@ -5,8 +5,10 @@
 #include "simulator.h"
 #include "event.h"
 #include "stdarg.h"
+
 #include "tipos.h"
-#include "constantes.h" 
+#include "constantes.h"
+
 
 class sen_confirmacion_enfermero: public Simulator { 
 // Declare the state,
