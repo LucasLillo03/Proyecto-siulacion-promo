@@ -1,4 +1,4 @@
-//CPP:mySource/Proyecto-siulacion-promo/sen_confirmacion_enfermero.cpp
+//CPP:mysources/sen_confirmacion_enfermero.cpp
 #if !defined sen_confirmacion_enfermero_h
 #define sen_confirmacion_enfermero_h
 
@@ -19,7 +19,12 @@ AlarmaCaudal notificacionAlarma;
 
 double sigma;  	
 
-double confirmacionEnfermero; 
+bool confirmacionEnfermero; 
+
+double desvioConfirmacion;
+double mediaConfirmacion;
+
+
 
 
 public:
