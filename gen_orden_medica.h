@@ -1,4 +1,3 @@
-//CPP:mySources.cpp
 //CPP:mysources/gen_orden_medica.cpp
 #if !defined gen_orden_medica_h
 #define gen_orden_medica_h
@@ -6,9 +5,9 @@
 #include "simulator.h"
 #include "event.h"
 #include "stdarg.h"
-#include "tipos.h"
-#include <cmath>
 
+#include "tipos.h"
+#include "cmath"
 
 
 class gen_orden_medica: public Simulator { 
@@ -22,7 +21,7 @@ double sigma;
 // Variable de salida
 double y; 
 
-// Par�metros de simulaci�n
+// Par?metros de simulaci?n
 double PCaudalNulo;
 double sigma_arr;
 double mediaCaudal;

@@ -3,7 +3,7 @@ Root-Coordinator
   Simulator
    {
     Path = mysources/gen_orden_medica.h
-    Parameters = 2.000000e-01,1.800000e+03
+    Parameters = 2.000000e-01,1.800000e+02,4.000000e+01
    }
   Simulator
    {
@@ -17,8 +17,8 @@ Root-Coordinator
    }
   Simulator
    {
-    Path = sinks/gnuplot.h
-    Parameters = 1.000000e+00,"set xrange [0:%tf] @ set grid @ set title 'Plot'","with lines title 'First output'","","","",""
+    Path = sinks\to_disk.h
+    Parameters = "output.csv"
    }
   EIC
    {

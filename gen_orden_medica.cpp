@@ -27,9 +27,9 @@ if(generado <= PCaudalNulo) {
 	actual = 0.0;
 } else {
 	double u = ((double)rand() / (double)RAND_MAX) + 1e-7;
-	double nuevoCaudal = -(1/mediaCaudal) * log(u);
+	double nuevoCaudal = -((double)mediaCaudal) * log(u);
 	
-	if (nuevoCaudal > 200.0) nuevoCaudal = 200.0;
+	// if (nuevoCaudal > 200.0) nuevoCaudal = 200.0;
 	
 	actual = nuevoCaudal;
 }
