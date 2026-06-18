@@ -1,11 +1,5 @@
 #include "sen_confirmacion_enfermero.h"
-
-#include <cstdlib>
-#include <cmath>
-#include <iostream>
-#ifndef M_PI
-#define M_PI 3.14159265358979323846
-#endif
+#include "random_utils.h"
 
 void sen_confirmacion_enfermero::init(double t,...) {
 //The 'parameters' variable contains the parameters transferred from the editor.
@@ -43,13 +37,7 @@ void sen_confirmacion_enfermero::dext(Event x, double t) {
 
 double valorAlarma = *(AlarmaCaudal*)x.value; 
 	if (valorAlarma == ALARMA_CRITICA){
-		//se usa el algoritmo de box-muller para generar la distribucion normal
-	    //TODO modularizar la formula de la distribucion normal
-		double u1 = (double)(rand() + 1) / ((double)RAND_MAX + 1);
-		double u2 = (double)rand() / (double)RAND_MAX;
-		double z = sqrt(-2.0 * log(u1)) * cos(2.0 * M_PI * u2);
-
-		sigma = mediaConfirmacion + desvioConfirmacion * z;
+		sigma = randomNormal(mediaConfirmacion, desvioConfirmacion);
 	}
 else{
 	sigma = inf; 

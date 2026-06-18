@@ -1,4 +1,5 @@
 #include "gen_orden_medica.h"
+#include "random_utils.h"
 void gen_orden_medica::init(double t,...) {
 //The 'parameters' variable contains the parameters transferred from the editor.
 va_list parameters;
@@ -21,13 +22,12 @@ return sigma;
 }
 void gen_orden_medica::dint(double t) {
 
-double generado = (double)rand() / (double)RAND_MAX;
+double generado = randomUniform();
 
 if(generado <= PCaudalNulo) {
 	actual = 0.0;
 } else {
-	double u = ((double)rand() / (double)RAND_MAX) + 1e-7;
-	double nuevoCaudal = -((double)mediaCaudal) * log(u);
+	double nuevoCaudal = randomExponential((double)mediaCaudal);
 	
 	// if (nuevoCaudal > 200.0) nuevoCaudal = 200.0;
 	
