@@ -75,8 +75,8 @@ Coupled
                 }
             Parameters
                 {
-                desvioConfirmacion = Val; 10 ; 
                 mediaConfirmacion = Val; 20 ; 
+                desvioConfirmacion = Val; 10 ; 
                 }
             }
         Atomic
