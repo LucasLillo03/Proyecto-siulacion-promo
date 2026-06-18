@@ -10,7 +10,7 @@ va_start(parameters,t);
 
 PCaudalNulo = var_arg(parameters, double);
 sigma_arr = var_arg(parameters, double);
-media_arr = var_arg(parameters, double);
+mediaCaudal = var_arg(parameters, double);
 
 actual = 0.0;
 sigma = sigma_arr;
@@ -27,7 +27,7 @@ if(generado <= PCaudalNulo) {
 	actual = 0.0;
 } else {
 	double u = ((double)rand() / (double)RAND_MAX) + 1e-7;
-	double nuevoCaudal = -(1/media_arr) * log(u);
+	double nuevoCaudal = -(1/mediaCaudal) * log(u);
 	
 	if (nuevoCaudal > 200.0) nuevoCaudal = 200.0;
 	

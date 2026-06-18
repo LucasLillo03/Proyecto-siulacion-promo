@@ -25,7 +25,7 @@ double y;
 // Par�metros de simulaci�n
 double PCaudalNulo;
 double sigma_arr;
-double media_arr;
+double mediaCaudal;
 
 
 

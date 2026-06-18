@@ -11,7 +11,6 @@ notificacionAlarma = ALARMA_CAUDAL_APAGADA;
 
 sigma = inf;
 
- 
 
 }
 double sen_confirmacion_enfermero::ta(double t) {
@@ -28,7 +27,11 @@ void sen_confirmacion_enfermero::dext(Event x, double t) {
 //     'x.port' is the port number
 //     'e' is the time elapsed since last transition
 if (x.value == ALARMA_CRITICA){
-	double tiempoConfirmacion = //TODO tiempo generado en base a una distribucion normal;
+	putScilabVar("media_confirmacion", mediaConfirmacion);
+	putScilabVar("desvio_confirmacion", desvioConfirmacion);
+	char comandoScilab[] = "grand(1, 1, 'nor', media_confirmacion, desvio_confirmacion)";
+
+	double tiempoConfirmacion = executeScilabJob(comandoScilab, true);
 	sigma = tiempoConfirmacion;
 }
 else{
@@ -42,8 +45,8 @@ Event sen_confirmacion_enfermero::lambda(double t) {
 //     %&Value% points to the variable which contains the value.
 //     %NroPort% is the port number (from 0 to n-1)
 
-
-return Event(true, 0);
+bool salida = true; 
+return Event(&salida, 0);
 }
 void sen_confirmacion_enfermero::exit() {
 //Code executed at the end of the simulation.

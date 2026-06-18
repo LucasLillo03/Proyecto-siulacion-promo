@@ -5,22 +5,20 @@
 #include "simulator.h"
 #include "event.h"
 #include "stdarg.h"
-
-
+#include "tipos.h"
+#include "constantes.h" 
 
 class sen_confirmacion_enfermero: public Simulator { 
 // Declare the state,
 // output variables
 // and parameters
-#include "tipos.h"
-#include "constantes.h" 
 
 AlarmaCaudal notificacionAlarma;
 
 double sigma;  	
-
 double confirmacionEnfermero; 
-
+double mediaConfirmacion;
+double desvioConfirmacion;
 
 public:
 	sen_confirmacion_enfermero(const char *n): Simulator(n) {};
