@@ -1,4 +1,12 @@
 #include "sen_confirmacion_enfermero.h"
+
+#include <cstdlib>
+#include <cmath>
+#include <iostream>
+#ifndef M_PI
+#define M_PI 3.14159265358979323846
+#endif
+
 void sen_confirmacion_enfermero::init(double t,...) {
 //The 'parameters' variable contains the parameters transferred from the editor.
 va_list parameters;
@@ -14,6 +22,7 @@ desvioConfirmacion = va_arg(parameters, double);
 notificacionAlarma = ALARMA_CAUDAL_APAGADA; 
 confirmacionEnfermero = true;
 sigma = inf;
+srand(42);
 
  
 
@@ -33,16 +42,15 @@ void sen_confirmacion_enfermero::dext(Event x, double t) {
 //     'e' is the time elapsed since last transition
 
 double valorAlarma = *(AlarmaCaudal*)x.value; 
-if (valorAlarma == ALARMA_CRITICA){
-	putScilabVar("mediaConfirmacion", mediaConfirmacion);
-	putScilabVar("desvioConfirmacion", desvioConfirmacion);
+	if (valorAlarma == ALARMA_CRITICA){
+		//se usa el algoritmo de box-muller para generar la distribucion normal
+	    //TODO modularizar la formula de la distribucion normal
+		double u1 = (double)(rand() + 1) / ((double)RAND_MAX + 1);
+		double u2 = (double)rand() / (double)RAND_MAX;
+		double z = sqrt(-2.0 * log(u1)) * cos(2.0 * M_PI * u2);
 
-	char comandoScilab[] = "grand(1,1, 'nor', mediaConfirmacion, desvioConfirmacion)"; 
-
-	double nuevoTiempoDeConfirmacion = executeScilabJob(comandoScilab, true);
-
-	sigma = nuevoTiempoDeConfirmacion;
-}
+		sigma = mediaConfirmacion + desvioConfirmacion * z;
+	}
 else{
 	sigma = inf; 
 }

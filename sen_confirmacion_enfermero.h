@@ -8,6 +8,7 @@
 
 #include "tipos.h"
 #include "constantes.h"
+#include <cstdlib>
 
 
 class sen_confirmacion_enfermero: public Simulator { 

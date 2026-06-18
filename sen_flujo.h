@@ -6,6 +6,8 @@
 #include "event.h"
 #include "stdarg.h"
 
+#include <cstdlib>
+
 
 
 class sen_flujo: public Simulator { 

@@ -27,7 +27,7 @@ Root-Coordinator
    }
   Simulator
    {
-    Path = source/gen_alarmacritica.h
+    Path = mysources/gen_alarmacritica.h
     Parameters = 
    }
   EIC
