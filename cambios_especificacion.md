@@ -5,3 +5,5 @@ Sensor de flujo:
 Sensor de fin bolsa: 
     Se cambio el tipo de la variable de estado contenidoRestante de RangoCaudalRecetado a double.
     Se agrego un parametro "capacidadMaxima" para definir el contenido inicial de la bolsa.
+    Se corrigieron las condiciones teniendo en cuenta tambien el tiempo pasado en el estado y la division por 3600.
+    
