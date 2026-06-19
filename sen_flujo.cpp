@@ -24,13 +24,13 @@ double sen_flujo::ta(double t) {
 return sigma; 	
 }
 void sen_flujo::dint(double t) {
-    caudalMedido = caudalMedido <= 0 ? 0 : randomNormal(caudalMedido, desvioCaudal);
+    caudalMedido = caudalMedido <= 0 ? 0 : abs(randomNormal(caudalMedido, desvioCaudal));
     sigma = periodoMuestreoFlujo;   
 }
 void sen_flujo::dext(Event x, double t) {
     double valorCaudal = *(double*)x.value; 
 
-    caudalMedido = valorCaudal <= 0 ? 0 : randomNormal(valorCaudal, desvioCaudal); 
+    caudalMedido = valorCaudal <= 0 ? 0 : abs(randomNormal(valorCaudal, desvioCaudal)); 
     
     sigma = sigma - e;  
 }
