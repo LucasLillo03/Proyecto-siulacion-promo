@@ -12,6 +12,10 @@ inline double randomUniform() {
     return (double)rand() / (double)RAND_MAX;
 }
 
+inline double randomUniformConMaximo(double max) {
+    return (double)rand() / (double)RAND_MAX * max;
+}
+
 inline double randomUniformNonZero() {
     return (double)(rand() + 1) / ((double)RAND_MAX + 1);
 }

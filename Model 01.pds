@@ -42,11 +42,6 @@ Root-Coordinator
    }
   Simulator
    {
-    Path = mysources/accionador_bolsa.h
-    Parameters = 
-   }
-  Simulator
-   {
     Path = mysources/actuador_bomba.h
     Parameters = 
    }
@@ -70,6 +65,42 @@ Root-Coordinator
     Path = mysources/gen_alarmacritica.h
     Parameters = 
    }
+    Coordinator
+     {
+      Simulator
+       {
+        Path = mysources/accionador_bolsa.h
+        Parameters = 
+       }
+      Simulator
+       {
+        Path = mysources/manejador_bolsa.h
+        Parameters = 
+       }
+      Simulator
+       {
+        Path = mysources/desvio_caudal.h
+        Parameters = 3.000000e+00,5.000000e+00,3.000000e+01,1.000000e-01
+       }
+      EIC
+       {
+        (0,3);(1,0)
+        (0,0);(2,0)
+        (0,1);(2,1)
+        (0,2);(2,2)
+       }
+      EOC
+       {
+        (0,0);(0,1)
+        (2,0);(0,0)
+        (1,0);(0,0)
+       }
+      IC
+       {
+        (1,1);(0,1)
+        (2,1);(0,0)
+       }
+     }
   EIC
    {
    }
@@ -83,9 +114,9 @@ Root-Coordinator
     (1,0);(5,0)
     (1,0);(6,0)
     (6,0);(7,0)
-    (11,0);(10,0)
-    (10,0);(12,0)
-    (10,1);(12,1)
-    (13,0);(2,0)
+    (10,0);(9,0)
+    (9,0);(11,0)
+    (9,1);(11,1)
+    (12,0);(2,0)
    }
  }

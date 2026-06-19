@@ -125,7 +125,7 @@ Coupled
             Description = Save the values (event,t) in a file.
             Graphic
                 {
-                Position = -34305 ; -7680
+                Position = -34305 ; -7755
                 Dimension = 675 ; 675
                 Direction = Right
                 Color = 15
@@ -278,7 +278,7 @@ Coupled
             Description = Coupled DEVS model
             Graphic
                 {
-                Position = -32130; -11610
+                Position = -36405; -12210
                 Dimension = 675; 720
                 Direction = Right
                 Color = 15
@@ -317,7 +317,7 @@ Coupled
                 Inport
                     {
                     Name = orden_medica
-                    CoupledPort = 2
+                    CoupledPort = 1
                     Description = 
                     Graphic
                         {
@@ -398,6 +398,28 @@ Coupled
                         {
                         }
                     }
+                Atomic
+                    {
+                    Name = desvio_caudal
+                    Ports = 3 ; 2
+                    Path = mysources/desvio_caudal.h
+                    Description = Atomic DEVS model
+                    Graphic
+                        {
+                        Position = -18480 ; -7830
+                        Dimension = 675 ; 675
+                        Direction = Right
+                        Color = 15
+                        Icon = None
+                        }
+                    Parameters
+                        {
+                        tiempoMaximoInicio = Val; 3 ; 
+                        tiempoMaximoDesvio = Val; 5 ; 
+                        tiempoMedioHastaCritico = Val; 30 ; 
+                        desvioMaximo = Val; 0.1 ; 
+                        }
+                    }
                 Line
                     {
                     Source = Prt ;  6 ;  1 ; 0
@@ -421,10 +443,45 @@ Coupled
                     }
                 Line
                     {
+                    Source = Prt ;  3 ;  1 ; 0
+                    Sink = Cmp ;  3 ;  1 ; -1
+                    PointX = -21525 ; -18825 ; -18825 ; -18615
+                    PointY = -8850 ; -8850 ; -7650 ; -7650
+                    }
+                Line
+                    {
+                    Source = Prt ;  4 ;  1 ; 0
+                    Sink = Cmp ;  3 ;  2 ; -1
+                    PointX = -21525 ; -21525 ; -18615
+                    PointY = -7500 ; -7500 ; -7500
+                    }
+                Line
+                    {
+                    Source = Prt ;  5 ;  1 ; 0
+                    Sink = Cmp ;  3 ;  3 ; -1
+                    PointX = -21525 ; -18825 ; -18825 ; -18615
+                    PointY = -6300 ; -6300 ; -7275 ; -7275
+                    }
+                Line
+                    {
+                    Source = Cmp ;  3 ;  1 ; 0
+                    Sink = Prt ;  1 ;  1 ; -1
+                    PointX = -17700 ; -17700 ; -7065
+                    PointY = -7650 ; -8175 ; -8175
+                    }
+                Line
+                    {
                     Source = Cmp ;  2 ;  1 ; 0
                     Sink = Prt ;  1 ;  1 ; -1
                     PointX = -16950 ; -16950 ; -7065 ; -7065
-                    PointY = -4050 ; -4725 ; -4725 ; -8175
+                    PointY = -4050 ; -5775 ; -5775 ; -8175
+                    }
+                Line
+                    {
+                    Source = Cmp ;  3 ;  2 ; 0
+                    Sink = Cmp ;  1 ;  1 ; -1
+                    PointX = -17700 ; -15900 ; -15900 ; -14490
+                    PointY = -7350 ; -7350 ; -4050 ; -4050
                     }
                 }
             }
@@ -446,8 +503,8 @@ Coupled
                     {
                     Source = Cmp ;  2 ;  1 ; 0
                     Sink = Cmp ;  6 ;  1 ; -1
-                    PointX = -39375 ; -34440 ; -34440
-                    PointY = -7425 ; -7425 ; -7350
+                    PointX = -39375 ; -39375 ; -34440
+                    PointY = -7425 ; -7425 ; -7425
                     }
                 Line
                     {

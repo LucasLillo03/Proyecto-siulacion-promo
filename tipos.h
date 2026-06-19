@@ -51,4 +51,11 @@ enum EstadoCritico {
     CONFIRMANDO
 };
 
+//8. Rango del estado del caudal
+enum RangoEstadoCaudal {
+    CAUDAL_NORMAL,
+    CAUDAL_DESVIADO,
+    CAUDAL_CRITICO
+};
+
 #endif // TIPOS_BOMBA_H

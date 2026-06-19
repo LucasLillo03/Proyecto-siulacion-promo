@@ -14,3 +14,6 @@ Actuador de bomba:
 Modulo de alarmas: 
     Fue necesario modificar la estructura del delta externo para adaptarse a las limitaciones de tipado de c++. 
     No usamos un nuevo idle para AlarmaCaudal, utilizamos ALARMA_CAUDAL_APAGADA. 
+
+Desvio caudal: 
+    Se cambio el flujo de lambda para adapatarse a las limitaciones de c++. 
