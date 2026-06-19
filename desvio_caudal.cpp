@@ -75,7 +75,7 @@ void desvio_caudal::dext(Event x, double t) {
     }
 
     //entrada sensor de flujo
-    else if (x.port = PUERTO_SENSOR_FLUJO){
+    else if (x.port == PUERTO_SENSOR_FLUJO){
         double valorEntrante = *(double*)x.value;
 
         if (caudalRecetado * desvioMaximo <= abs(caudalRecetado - caudalActual)){
@@ -100,7 +100,7 @@ void desvio_caudal::dext(Event x, double t) {
         }
     }
     //entrada de confirmacion del enfermero
-    else if (x.port = PUERTO_CONFIRMACION_ENFERMERO){
+    else if (x.port == PUERTO_CONFIRMACION_ENFERMERO){
         if (estadoCaudal == CAUDAL_CRITICO){
             estadoCaudal = CAUDAL_NORMAL;
             sigma = 0; 
@@ -117,9 +117,11 @@ void desvio_caudal::dext(Event x, double t) {
 
 Event desvio_caudal::seleccionarSalida(double t){
     if (!correccionPendiente){ 
+        correccionPendiente = true;
         return Event(&salidaAlarma, PUERTO_ALARMA);
     }
     else{
+        correccionPendiente = false;
         return Event(&caudalRecetado, PUERTO_CORRECCION);
     }
 }
