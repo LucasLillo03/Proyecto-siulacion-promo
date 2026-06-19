@@ -20,6 +20,24 @@ Coupled
         {
         Atomic
             {
+            Name = set_semilla
+            Ports = 1 ; 1
+            Path = mysources/set_semilla.h
+            Description = Atomic DEVS model
+            Graphic
+                {
+                Position = -13980 ; -9135
+                Dimension = 675 ; 720
+                Direction = Right
+                Color = 15
+                Icon = None
+                }
+            Parameters
+                {
+                }
+            }
+        Atomic
+            {
             Name = gen_orden_medica
             Ports = 0 ; 1
             Path = mysources/gen_orden_medica.h
@@ -137,22 +155,22 @@ Coupled
             }
         Line
             {
-            Source = Cmp ;  1 ;  1 ; 0
-            Sink = Cmp ;  4 ;  1 ; -1
+            Source = Cmp ;  2 ;  1 ; 0
+            Sink = Cmp ;  5 ;  1 ; -1
             PointX = -9225 ; -9225 ; -6615
             PointY = -7725 ; -7725 ; -7725
             }
         Line
             {
-            Source = Cmp ;  3 ;  1 ; 0
-            Sink = Cmp ;  5 ;  1 ; -1
+            Source = Cmp ;  4 ;  1 ; 0
+            Sink = Cmp ;  6 ;  1 ; -1
             PointX = -9225 ; -9225 ; -6540
             PointY = -4800 ; -4800 ; -4800
             }
         Line
             {
-            Source = Cmp ;  6 ;  1 ; 0
-            Sink = Cmp ;  3 ;  1 ; -1
+            Source = Cmp ;  7 ;  1 ; 0
+            Sink = Cmp ;  4 ;  1 ; -1
             PointX = -12975 ; -12975 ; -10140
             PointY = -4800 ; -4800 ; -4800
             }

@@ -16,7 +16,6 @@ desvioConfirmacion = va_arg(parameters, double);
 notificacionAlarma = ALARMA_CAUDAL_APAGADA; 
 confirmacionEnfermero = true;
 sigma = inf;
-srand(42);
 
  
 
