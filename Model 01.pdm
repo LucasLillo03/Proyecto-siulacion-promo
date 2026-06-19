@@ -95,7 +95,7 @@ Coupled
                 }
             Parameters
                 {
-                File = Str; output.csv ; file name
+                File = Str; ./../atomics/mysources/outputs/ordenes.csv ; file name
                 }
             }
         Atomic
@@ -114,7 +114,7 @@ Coupled
                 }
             Parameters
                 {
-                File = Str; confirmacionEnfermero.csv ; file name
+                File = Str; ./../atomics/mysources/outputs/confirmacionEnfermero.csv ; file name
                 }
             }
         Atomic
@@ -151,7 +151,7 @@ Coupled
                 }
             Parameters
                 {
-                File = Str; sen_flujo_output.csv ; file name
+                File = Str; ./../atomics/mysources/outputs/sen_flujo_output.csv ; file name
                 }
             }
             Atomic
