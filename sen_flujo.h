@@ -6,8 +6,6 @@
 #include "event.h"
 #include "stdarg.h"
 
-#include <cstdlib>
-
 
 
 class sen_flujo: public Simulator { 
@@ -17,8 +15,6 @@ class sen_flujo: public Simulator {
 
 double caudalMedido; 
 double sigma; 
-
-double sensorFlujo;
 
 double periodoMuestreoFlujo; 
 double desvioCaudal; 

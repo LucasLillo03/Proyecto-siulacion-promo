@@ -1,5 +1,7 @@
 #include "sen_flujo.h"
 #include "random_utils.h"
+#include <cmath>
+#define SENSOR_FLUJO 0
 
 void sen_flujo::init(double t,...) {
 //The 'parameters' variable contains the parameters transferred from the editor.
@@ -12,7 +14,7 @@ va_start(parameters,t);
 periodoMuestreoFlujo = va_arg(parameters, double);
 desvioCaudal = va_arg(parameters, double);
 
-caudalMedido = 0; 
+caudalMedido = 0.0; 
 sigma = periodoMuestreoFlujo;
 
  
@@ -24,13 +26,13 @@ double sen_flujo::ta(double t) {
 return sigma; 	
 }
 void sen_flujo::dint(double t) {
-    caudalMedido = caudalMedido <= 0 ? 0 : abs(randomNormal(caudalMedido, desvioCaudal));
+    caudalMedido = caudalMedido <= 0 ? 0 : std::fabs(randomNormal(caudalMedido, desvioCaudal)); //TODO por alguna razon siguen saliendo valores negativos
     sigma = periodoMuestreoFlujo;   
 }
 void sen_flujo::dext(Event x, double t) {
     double valorCaudal = *(double*)x.value; 
 
-    caudalMedido = valorCaudal <= 0 ? 0 : abs(randomNormal(valorCaudal, desvioCaudal)); 
+    caudalMedido = valorCaudal <= 0 ? 0 : std::fabs(randomNormal(valorCaudal, desvioCaudal)); 
     
     sigma = sigma - e;  
 }
@@ -42,7 +44,7 @@ Event sen_flujo::lambda(double t) {
 //     %NroPort% is the port number (from 0 to n-1)
 
 
-return Event(&caudalMedido, 0);
+return Event(&caudalMedido, SENSOR_FLUJO);
 }
 void sen_flujo::exit() {
 //Code executed at the end of the simulation.
