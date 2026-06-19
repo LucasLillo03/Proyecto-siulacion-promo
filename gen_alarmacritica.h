@@ -1,4 +1,4 @@
-//CPP:source/gen_alarmacritica.cpp
+//CPP:mysources/gen_alarmacritica.cpp
 #if !defined gen_alarmacritica_h
 #define gen_alarmacritica_h
 
