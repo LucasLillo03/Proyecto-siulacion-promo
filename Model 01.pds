@@ -18,12 +18,12 @@ Root-Coordinator
   Simulator
    {
     Path = sinks\to_disk.h
-    Parameters = "output.csv"
+    Parameters = "./../atomics/mysources/outputs/ordenes.csv"
    }
   Simulator
    {
     Path = sinks\to_disk.h
-    Parameters = "confirmacionEnfermero.csv"
+    Parameters = "./../atomics/mysources/outputs/confirmacionEnfermero.csv"
    }
   Simulator
    {
@@ -33,7 +33,7 @@ Root-Coordinator
   Simulator
    {
     Path = sinks\to_disk.h
-    Parameters = "sen_flujo_output.csv"
+    Parameters = "./../atomics/mysources/outputs/sen_flujo_output.csv"
    }
   Simulator
    {
