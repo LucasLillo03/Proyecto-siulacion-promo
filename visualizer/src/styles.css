@@ -37,20 +37,98 @@ header h1 {
   display: flex;
   align-items: center;
   gap: 10px;
+  flex-wrap: wrap;
 }
 
-#controls label {
+.control-label {
   font-weight: 500;
   font-size: 14px;
+  white-space: nowrap;
 }
 
-#csv-select {
-  padding: 8px 12px;
-  border: 1px solid #ccc;
+#file-selector {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  flex: 1;
+}
+
+.file-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  border: 1.5px solid #d0d0d0;
   border-radius: 6px;
-  font-size: 14px;
   background: #fff;
-  min-width: 280px;
+  cursor: pointer;
+  font-size: 13px;
+  transition: all 0.15s ease;
+  user-select: none;
+}
+
+.file-item:hover {
+  border-color: #a0a0a0;
+  background: #f0f0f0;
+}
+
+.file-item.active {
+  border-color: inherit;
+  background: #f0f7ff;
+}
+
+.file-color {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.file-name {
+  white-space: nowrap;
+}
+
+.file-check {
+  width: 14px;
+  height: 14px;
+  border-radius: 3px;
+  border: 1.5px solid #bbb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.15s ease;
+}
+
+.file-item.active .file-check {
+  background: #1f77b4;
+  border-color: #1f77b4;
+}
+
+.file-item.active .file-check::after {
+  content: '';
+  width: 4px;
+  height: 7px;
+  border: solid #fff;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+  margin-top: -1px;
+}
+
+#clear-btn {
+  padding: 6px 14px;
+  border: 1.5px solid #d0d0d0;
+  border-radius: 6px;
+  background: #fff;
+  cursor: pointer;
+  font-size: 13px;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+}
+
+#clear-btn:hover {
+  border-color: #999;
+  background: #f5f5f5;
 }
 
 #plot-container {
