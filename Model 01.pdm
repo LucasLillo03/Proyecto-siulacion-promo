@@ -95,7 +95,7 @@ Coupled
                 }
             Parameters
                 {
-                File = Str; ./../atomics/mysources/outputs/ordenes.csv ; file name
+                File = Str; ./../atomics/mysources/outputs/ordenes.line.csv ; file name
                 }
             }
         Atomic
@@ -333,7 +333,7 @@ Coupled
                     Description = Atomic DEVS model
                     Graphic
                         {
-                        Position = -17730 ; -4230
+                        Position = -18555 ; -4230
                         Dimension = 675 ; 675
                         Direction = Right
                         Color = 15
@@ -369,14 +369,14 @@ Coupled
                     {
                     Source = Prt ;  6 ;  1 ; 0
                     Sink = Cmp ;  2 ;  1 ; -1
-                    PointX = -21525 ; -17865 ; -17865
+                    PointX = -21525 ; -21525 ; -18690
                     PointY = -3900 ; -3900 ; -3900
                     }
                 Line
                     {
                     Source = Cmp ;  2 ;  2 ; 0
                     Sink = Cmp ;  1 ;  2 ; -1
-                    PointX = -16950 ; -16950 ; -14490
+                    PointX = -17775 ; -17775 ; -14490
                     PointY = -3750 ; -3750 ; -3750
                     }
                 Line
@@ -418,7 +418,7 @@ Coupled
                     {
                     Source = Cmp ;  2 ;  1 ; 0
                     Sink = Prt ;  1 ;  1 ; -1
-                    PointX = -16950 ; -16950 ; -7065 ; -7065
+                    PointX = -17775 ; -17775 ; -7065 ; -7065
                     PointY = -4050 ; -5775 ; -5775 ; -8175
                     }
                 Line
