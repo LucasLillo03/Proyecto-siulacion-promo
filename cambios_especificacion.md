@@ -10,3 +10,7 @@ Sensor de fin bolsa:
 
 Actuador de bomba:
     En la especificacion, cuando el actuador no podia ajustar el caudal tardaba un tiempo sigma_ajuste en generar la salida. lo mas correcto (nuestra interpretacion) es que se simule que el actuador realiza el intento de corregir hasta que llega el tiempo maximo esperado por el sistema y lo deja de intentar. Nuevos parametros de simulacion: mediaLatenciaActuador (default 0.25)
+
+Modulo de alarmas: 
+    Fue necesario modificar la estructura del delta externo para adaptarse a las limitaciones de tipado de c++. 
+    No usamos un nuevo idle para AlarmaCaudal, utilizamos ALARMA_CAUDAL_APAGADA. 

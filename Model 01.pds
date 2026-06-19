@@ -27,11 +27,6 @@ Root-Coordinator
    }
   Simulator
    {
-    Path = mysources/gen_alarmacritica.h
-    Parameters = 
-   }
-  Simulator
-   {
     Path = sinks\to_disk.h
     Parameters = "./../atomics/mysources/outputs/sen_flujo_output.csv"
    }
@@ -43,7 +38,7 @@ Root-Coordinator
   Simulator
    {
     Path = sinks/ev_count2.h
-    Parameters = "num_ev_finBolsa.txt",1.000000e+00
+    Parameters = "./../atomics/mysources/outputs/num_ev_finBolsa.txt",1.000000e+00
    }
   Simulator
    {
@@ -53,6 +48,26 @@ Root-Coordinator
   Simulator
    {
     Path = mysources/actuador_bomba.h
+    Parameters = 
+   }
+  Simulator
+   {
+    Path = mysources/modulo_alarmas.h
+    Parameters = 3.000000e+01,1.000000e+01
+   }
+  Simulator
+   {
+    Path = mysources/gen_alarmas.h
+    Parameters = 
+   }
+  Simulator
+   {
+    Path = sinks/ev_count2.h
+    Parameters = "./../atomics/mysources/outputs/salida_modulo_alarmas.txt",2.000000e+00
+   }
+  Simulator
+   {
+    Path = mysources/gen_alarmacritica.h
     Parameters = 
    }
   EIC
@@ -65,9 +80,12 @@ Root-Coordinator
    {
     (0,0);(3,0)
     (2,0);(4,0)
-    (5,0);(2,0)
+    (1,0);(5,0)
     (1,0);(6,0)
-    (1,0);(7,0)
-    (7,0);(8,0)
+    (6,0);(7,0)
+    (11,0);(10,0)
+    (10,0);(12,0)
+    (10,1);(12,1)
+    (13,0);(2,0)
    }
  }
