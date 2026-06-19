@@ -6,6 +6,9 @@
 #include "event.h"
 #include "stdarg.h"
 
+#include "tipos.h"
+#include "constantes.h"
+
 
 
 class sen_fin_bolsa: public Simulator { 
@@ -14,7 +17,6 @@ class sen_fin_bolsa: public Simulator {
 // and parameters
 
 double sensorFlujo;
-EstadoBolsa finBolsa;
 
 double contenidoRestante;
 EstadoBolsa estado;

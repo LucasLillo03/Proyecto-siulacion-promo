@@ -1,4 +1,6 @@
 #include "sen_fin_bolsa.h"
+#define FIN_BOLSA 0 
+
 void sen_fin_bolsa::init(double t,...) {
 //The 'parameters' variable contains the parameters transferred from the editor.
 va_list parameters;
@@ -27,7 +29,21 @@ void sen_fin_bolsa::dext(Event x, double t) {
 //     'x.value' is the value (pointer to void)
 //     'x.port' is the port number
 //     'e' is the time elapsed since last transition
-
+double valorEntrada = (*(double*)x.value * e) / 3600; // se divide por 3600 ya que el caudal esta en ml/h y el tiempo en segundos
+if (contenidoRestante - valorEntrada <= margenBolsa && contenidoRestante > margenBolsa){
+    contenidoRestante = contenidoRestante - valorEntrada;
+    estado = AGOTANDOSE; 
+    sigma = 0;
+}
+else if (contenidoRestante - valorEntrada <= 0 && contenidoRestante > 0){
+    contenidoRestante = 0;
+    estado = VACIA;
+    sigma = 0; 
+}
+else{
+    contenidoRestante = contenidoRestante - valorEntrada;
+    sigma = inf; 
+}
 }
 Event sen_fin_bolsa::lambda(double t) {
 //This function returns an Event:
@@ -37,7 +53,7 @@ Event sen_fin_bolsa::lambda(double t) {
 //     %NroPort% is the port number (from 0 to n-1)
 
 
-return Event(&estado, 0);
+return Event(&estado, FIN_BOLSA);
 }
 void sen_fin_bolsa::exit() {
 //Code executed at the end of the simulation.
