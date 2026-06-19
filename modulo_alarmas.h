@@ -14,7 +14,6 @@ class modulo_alarmas: public Simulator {
 // Declare the state,
 // output variables
 // and parameters
-Alarmas alarmas;
 
 AlarmaCaudal ac;
 double sigma_ac;
