@@ -54,6 +54,7 @@ enum EstadoCritico {
 //8. Rango del estado del caudal
 enum RangoEstadoCaudal {
     CAUDAL_NORMAL,
+    CAUDAL_TOLERANCIA_DESVIO,
     CAUDAL_DESVIADO,
     CAUDAL_CRITICO
 };

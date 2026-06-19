@@ -28,6 +28,7 @@ double tiempoMedioHastaCritico;
 double desvioMaximo; 
 
 bool correccionPendiente; 
+bool sistemaDetenido;
 
 AlarmaCaudal salidaAlarma;
 

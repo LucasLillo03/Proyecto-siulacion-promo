@@ -8,7 +8,7 @@ Root-Coordinator
   Simulator
    {
     Path = mysources/sen_flujo.h
-    Parameters = 1.000000e+00,5.000000e+00
+    Parameters = 1.000000e+00,2.500000e+00
    }
   Simulator
    {
@@ -18,7 +18,7 @@ Root-Coordinator
   Simulator
    {
     Path = sinks\to_disk.h
-    Parameters = "./../atomics/mysources/outputs/ordenes.line.csv"
+    Parameters = "./../atomics/mysources/outputs/ordenes.csv"
    }
   Simulator
    {
@@ -54,8 +54,8 @@ Root-Coordinator
      {
       Simulator
        {
-        Path = mysources/accionador_bolsa.h
-        Parameters = 
+        Path = mysources/desvio_caudal.h
+        Parameters = 3.000000e+00,5.000000e+00,3.000000e+01,1.000000e-01
        }
       Simulator
        {
@@ -64,28 +64,38 @@ Root-Coordinator
        }
       Simulator
        {
-        Path = mysources/desvio_caudal.h
-        Parameters = 3.000000e+00,5.000000e+00,3.000000e+01,1.000000e-01
+        Path = mysources/accionador_bolsa.h
+        Parameters = 
        }
       EIC
        {
         (0,3);(1,0)
-        (0,0);(2,0)
-        (0,1);(2,1)
-        (0,2);(2,2)
+        (0,0);(0,0)
+        (0,1);(0,1)
+        (0,2);(0,2)
        }
       EOC
        {
-        (0,0);(0,1)
-        (2,0);(0,0)
+        (2,0);(0,1)
+        (0,0);(0,0)
         (1,0);(0,0)
        }
       IC
        {
-        (1,1);(0,1)
-        (2,1);(0,0)
+        (1,1);(2,1)
+        (0,1);(2,0)
        }
      }
+  Simulator
+   {
+    Path = sinks/ev_count2.h
+    Parameters = "./../atomics/mysources/outputs/salida_desvio_caudal.txt",1.000000e+00
+   }
+  Simulator
+   {
+    Path = sinks/to_disk.h
+    Parameters = "./../atomics/mysources/outputs/correciones_caudal.csv"
+   }
   EIC
    {
    }
@@ -108,5 +118,7 @@ Root-Coordinator
     (7,0);(1,0)
     (10,0);(8,0)
     (8,0);(2,0)
+    (10,0);(11,0)
+    (7,0);(12,0)
    }
  }
