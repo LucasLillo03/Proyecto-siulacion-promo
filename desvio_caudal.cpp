@@ -1,6 +1,8 @@
 #include "desvio_caudal.h"
 #include <stdexcept>
 #include <math.h>
+#include "random_utils.h"
+
 //inputs ports
 #define PUERTO_ORDEN_MEDICA 0 //RangoCaudalRecetado
 #define PUERTO_CONFIRMACION_ENFERMERO 1 //bool

@@ -8,6 +8,7 @@
 
 #include "tipos.h"
 #include "constantes.h"
+#include "random_utils.h"
 
 
 class desvio_caudal: public Simulator { 

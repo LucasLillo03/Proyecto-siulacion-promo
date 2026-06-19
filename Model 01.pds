@@ -23,11 +23,6 @@ Root-Coordinator
   Simulator
    {
     Path = sinks\to_disk.h
-    Parameters = "./../atomics/mysources/outputs/confirmacionEnfermero.csv"
-   }
-  Simulator
-   {
-    Path = sinks\to_disk.h
     Parameters = "./../atomics/mysources/outputs/sen_flujo_output.csv"
    }
   Simulator
@@ -52,18 +47,8 @@ Root-Coordinator
    }
   Simulator
    {
-    Path = mysources/gen_alarmas.h
-    Parameters = 
-   }
-  Simulator
-   {
     Path = sinks/ev_count2.h
     Parameters = "./../atomics/mysources/outputs/salida_modulo_alarmas.txt",2.000000e+00
-   }
-  Simulator
-   {
-    Path = mysources/gen_alarmacritica.h
-    Parameters = 
    }
     Coordinator
      {
@@ -110,13 +95,18 @@ Root-Coordinator
   IC
    {
     (0,0);(3,0)
-    (2,0);(4,0)
+    (5,0);(6,0)
+    (8,0);(9,0)
+    (8,1);(9,1)
+    (0,0);(10,0)
+    (1,0);(10,2)
+    (1,0);(4,0)
     (1,0);(5,0)
-    (1,0);(6,0)
-    (6,0);(7,0)
-    (10,0);(9,0)
-    (9,0);(11,0)
-    (9,1);(11,1)
-    (12,0);(2,0)
+    (2,0);(10,1)
+    (5,0);(10,3)
+    (10,1);(7,0)
+    (7,0);(1,0)
+    (10,0);(8,0)
+    (8,0);(2,0)
    }
  }
