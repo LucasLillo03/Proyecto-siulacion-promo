@@ -48,8 +48,8 @@ Event manejador_bolsa::lambda(double t) {
 //     %&Value% points to the variable which contains the value.
 //     %NroPort% is the port number (from 0 to n-1)
     if(ultimaEntrada == AGOTANDOSE){
-        salida = ALARMA_BAJA;
-        return Event(&salida, ALARMA_BAJA_PUERTO);
+        salidaFinBolsa = ALARMA_BAJA;
+        return Event(&salidaFinBolsa, ALARMA_BAJA_PUERTO);
     } else if(ultimaEntrada == VACIA){
         double salida = 0;
         return Event(&salida, DETENER_BOMBA_PUERTO);
