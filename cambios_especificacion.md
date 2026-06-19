@@ -17,3 +17,10 @@ Modulo de alarmas:
 
 Desvio caudal: 
     Se cambio el flujo de lambda para adapatarse a las limitaciones de c++. 
+    Se agrego el estado intermedio CAUDAL_TOLERANCIA_DESVIO entre NORMAL y DESVIADO.
+    Se corrigio la condicion de deteccion de desvio cambiando <= por < para evitar falsos positivos con caudal recetado = 0.
+    Se agrego la variable sistemaDetenido que ignora lecturas del sensor cuando el sistema esta detenido (luego de alarma critica).
+    Ahora al recibir una nueva orden medica se resetea estadoCaudal a CAUDAL_NORMAL.
+    Se protegio sigma y sigma_ec con std::max(0.0, ...) para evitar valores negativos.
+    La confirmacion del enfermero ahora verifica sistemaDetenido en lugar de estadoCaudal == CAUDAL_CRITICO.
+    Se agrego un delay en ta() para evitar el throw cuando sigma_ec == sigma.
