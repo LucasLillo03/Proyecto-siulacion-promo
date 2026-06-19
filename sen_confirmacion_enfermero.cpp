@@ -1,5 +1,6 @@
 #include "sen_confirmacion_enfermero.h"
 #include "random_utils.h"
+#include <math.h>
 
 void sen_confirmacion_enfermero::init(double t,...) {
 //The 'parameters' variable contains the parameters transferred from the editor.
@@ -36,7 +37,7 @@ void sen_confirmacion_enfermero::dext(Event x, double t) {
 
 double valorAlarma = *(AlarmaCaudal*)x.value; 
 	if (valorAlarma == ALARMA_CRITICA){
-		sigma = randomNormal(mediaConfirmacion, desvioConfirmacion);
+		sigma = std::abs(randomNormal(mediaConfirmacion, desvioConfirmacion));
 	}
 else{
 	sigma = inf; 
@@ -50,7 +51,7 @@ Event sen_confirmacion_enfermero::lambda(double t) {
 //     %NroPort% is the port number (from 0 to n-1)
 
 
-return Event(&sigma, 0);
+return Event(&confirmacionEnfermero, 0);
 
 // PARA DEBUG
 
