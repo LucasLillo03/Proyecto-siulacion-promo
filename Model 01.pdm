@@ -178,24 +178,6 @@ Coupled
             }
         Atomic
             {
-            Name = accionador_bolsa
-            Ports = 2 ; 1
-            Path = mysources/accionador_bolsa.h
-            Description = Atomic DEVS model
-            Graphic
-                {
-                Position = -29505 ; -4980
-                Dimension = 675 ; 675
-                Direction = Right
-                Color = 15
-                Icon = None
-                }
-            Parameters
-                {
-                }
-            }
-        Atomic
-            {
             Name = actuador_bomba
             Ports = 1 ; 1
             Path = mysources/actuador_bomba.h
@@ -288,68 +270,226 @@ Coupled
                 {
                 }
             }
-        Line
+        Coupled
             {
-            Source = Cmp ;  1 ;  1 ; 0
-            Sink = Cmp ;  4 ;  1 ; -1
-            PointX = -35400 ; -35400 ; -34440
-            PointY = -8775 ; -8775 ; -8775
+            Type = Coordinator
+            Name = controlador_bomba
+            Ports = 4; 2
+            Description = Coupled DEVS model
+            Graphic
+                {
+                Position = -32130; -11610
+                Dimension = 675; 720
+                Direction = Right
+                Color = 15
+                Icon = %basicelements%coupled.svg
+                Window = 5000; 5000; 5000; 5000
+                }
+            Parameters
+                {
+                }
+            System
+                {
+                Outport
+                    {
+                    Name = alarmas
+                    CoupledPort = 1
+                    Description = 
+                    Graphic
+                        {
+                        Position = -6915 ; -8175
+                        Dimension = 480
+                        Direction = Right
+                        }
+                    }
+                Outport
+                    {
+                    Name = ajustar_caudal
+                    CoupledPort = 2
+                    Description = 
+                    Graphic
+                        {
+                        Position = -6765 ; -3900
+                        Dimension = 480
+                        Direction = Right
+                        }
+                    }
+                Inport
+                    {
+                    Name = orden_medica
+                    CoupledPort = 2
+                    Description = 
+                    Graphic
+                        {
+                        Position = -22140 ; -8850
+                        Dimension = 480
+                        Direction = Right
+                        }
+                    }
+                Inport
+                    {
+                    Name = confirmacion_enfermero
+                    CoupledPort = 2
+                    Description = 
+                    Graphic
+                        {
+                        Position = -22140 ; -7500
+                        Dimension = 480
+                        Direction = Right
+                        }
+                    }
+                Inport
+                    {
+                    Name = sensor_flujo
+                    CoupledPort = 3
+                    Description = 
+                    Graphic
+                        {
+                        Position = -22140 ; -6300
+                        Dimension = 480
+                        Direction = Right
+                        }
+                    }
+                Inport
+                    {
+                    Name = fin_bolsa
+                    CoupledPort = 4
+                    Description = 
+                    Graphic
+                        {
+                        Position = -22140 ; -3900
+                        Dimension = 480
+                        Direction = Right
+                        }
+                    }
+                Atomic
+                    {
+                    Name = accionador_bolsa
+                    Ports = 2 ; 1
+                    Path = mysources/accionador_bolsa.h
+                    Description = Atomic DEVS model
+                    Graphic
+                        {
+                        Position = -14355 ; -4230
+                        Dimension = 675 ; 675
+                        Direction = Right
+                        Color = 15
+                        Icon = None
+                        }
+                    Parameters
+                        {
+                        }
+                    }
+                Atomic
+                    {
+                    Name = manejador_bolsa
+                    Ports = 1 ; 2
+                    Path = mysources/manejador_bolsa.h
+                    Description = Atomic DEVS model
+                    Graphic
+                        {
+                        Position = -17730 ; -4230
+                        Dimension = 675 ; 675
+                        Direction = Right
+                        Color = 15
+                        Icon = None
+                        }
+                    Parameters
+                        {
+                        }
+                    }
+                Line
+                    {
+                    Source = Prt ;  6 ;  1 ; 0
+                    Sink = Cmp ;  2 ;  1 ; -1
+                    PointX = -21525 ; -17865 ; -17865
+                    PointY = -3900 ; -3900 ; -3900
+                    }
+                Line
+                    {
+                    Source = Cmp ;  2 ;  2 ; 0
+                    Sink = Cmp ;  1 ;  2 ; -1
+                    PointX = -16950 ; -16950 ; -14490
+                    PointY = -3750 ; -3750 ; -3750
+                    }
+                Line
+                    {
+                    Source = Cmp ;  1 ;  1 ; 0
+                    Sink = Prt ;  2 ;  1 ; -1
+                    PointX = -13575 ; -6915 ; -6915
+                    PointY = -3900 ; -3900 ; -3900
+                    }
+                Line
+                    {
+                    Source = Cmp ;  2 ;  1 ; 0
+                    Sink = Prt ;  1 ;  1 ; -1
+                    PointX = -16950 ; -16950 ; -7065 ; -7065
+                    PointY = -4050 ; -4725 ; -4725 ; -8175
+                    }
+                }
             }
-        Line
-            {
-            Source = Cmp ;  3 ;  1 ; 0
-            Sink = Cmp ;  5 ;  1 ; -1
-            PointX = -35400 ; -35400 ; -34440
-            PointY = -5850 ; -5850 ; -5850
-            }
-        Line
-            {
-            Source = Cmp ;  2 ;  1 ; 0
-            Sink = Cmp ;  6 ;  1 ; -1
-            PointX = -39375 ; -34440 ; -34440
-            PointY = -7425 ; -7425 ; -7350
-            }
-        Line
-            {
-            Source = Cmp ;  2 ;  1 ; 0
-            Sink = Cmp ;  7 ;  1 ; -1
-            PointX = -39375 ; -38640 ; -38640
-            PointY = -7425 ; -7425 ; -4350
-            }
-        Line
-            {
-            Source = Cmp ;  7 ;  1 ; 0
-            Sink = Cmp ;  8 ;  1 ; -1
-            PointX = -37725 ; -37725 ; -36390
-            PointY = -4350 ; -4350 ; -4350
-            }
-        Line
-            {
-            Source = Cmp ;  12 ;  1 ; 0
-            Sink = Cmp ;  11 ;  1 ; -1
-            PointX = -30600 ; -30600 ; -29790
-            PointY = -8475 ; -8475 ; -8475
-            }
-        Line
-            {
-            Source = Cmp ;  11 ;  1 ; 0
-            Sink = Cmp ;  13 ;  1 ; -1
-            PointX = -28875 ; -28875 ; -28140
-            PointY = -8625 ; -8625 ; -8625
-            }
-        Line
-            {
-            Source = Cmp ;  11 ;  2 ; 0
-            Sink = Cmp ;  13 ;  2 ; -1
-            PointX = -28875 ; -28875 ; -28140
-            PointY = -8325 ; -8325 ; -8325
-            }
-        Line
-            {
-            Source = Cmp ;  14 ;  1 ; 0
-            Sink = Cmp ;  3 ;  1 ; -1
-            PointX = -36975 ; -36315 ; -36315
-            PointY = -5850 ; -5850 ; -5850
-            }
+                Line
+                    {
+                    Source = Cmp ;  1 ;  1 ; 0
+                    Sink = Cmp ;  4 ;  1 ; -1
+                    PointX = -35400 ; -35400 ; -34440
+                    PointY = -8775 ; -8775 ; -8775
+                    }
+                Line
+                    {
+                    Source = Cmp ;  3 ;  1 ; 0
+                    Sink = Cmp ;  5 ;  1 ; -1
+                    PointX = -35400 ; -35400 ; -34440
+                    PointY = -5850 ; -5850 ; -5850
+                    }
+                Line
+                    {
+                    Source = Cmp ;  2 ;  1 ; 0
+                    Sink = Cmp ;  6 ;  1 ; -1
+                    PointX = -39375 ; -34440 ; -34440
+                    PointY = -7425 ; -7425 ; -7350
+                    }
+                Line
+                    {
+                    Source = Cmp ;  2 ;  1 ; 0
+                    Sink = Cmp ;  7 ;  1 ; -1
+                    PointX = -39375 ; -38640 ; -38640
+                    PointY = -7425 ; -7425 ; -4350
+                    }
+                Line
+                    {
+                    Source = Cmp ;  7 ;  1 ; 0
+                    Sink = Cmp ;  8 ;  1 ; -1
+                    PointX = -37725 ; -37725 ; -36390
+                    PointY = -4350 ; -4350 ; -4350
+                    }
+                Line
+                    {
+                    Source = Cmp ;  11 ;  1 ; 0
+                    Sink = Cmp ;  10 ;  1 ; -1
+                    PointX = -30600 ; -30600 ; -29790
+                    PointY = -8475 ; -8475 ; -8475
+                    }
+                Line
+                    {
+                    Source = Cmp ;  10 ;  1 ; 0
+                    Sink = Cmp ;  12 ;  1 ; -1
+                    PointX = -28875 ; -28875 ; -28140
+                    PointY = -8625 ; -8625 ; -8625
+                    }
+                Line
+                    {
+                    Source = Cmp ;  10 ;  2 ; 0
+                    Sink = Cmp ;  12 ;  2 ; -1
+                    PointX = -28875 ; -28875 ; -28140
+                    PointY = -8325 ; -8325 ; -8325
+                    }
+                Line
+                    {
+                    Source = Cmp ;  13 ;  1 ; 0
+                    Sink = Cmp ;  3 ;  1 ; -1
+                    PointX = -36975 ; -36315 ; -36315
+                    PointY = -5850 ; -5850 ; -5850
+                    }
         }
     }
