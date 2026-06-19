@@ -28,6 +28,7 @@ enum AlarmaCaudal {
 
 // 5. Señales vinculadas al nivel de la bolsa
 enum AlarmaFinBolsa {
+    IDLE_ALARMA_FIN_BOLSA,
     ALARMA_BAJA
 };
 
