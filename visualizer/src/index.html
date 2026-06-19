@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PowerDEVS Visualizer</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.plot.ly/plotly-2.32.0.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+</head>
+<body>
+  <div id="container">
+    <header>
+      <h1>PowerDEVS Visualizer</h1>
+      <p class="subtitle">Simulacion de bomba de infusion</p>
+    </header>
+
+    <div id="controls">
+      <label for="csv-select">Archivo CSV:</label>
+      <select id="csv-select">
+        <option value="">-- Selecciona un archivo --</option>
+      </select>
+    </div>
+
+    <div id="plot-container">
+      <div id="plot"></div>
+      <p id="status">Cargando lista de archivos...</p>
+    </div>
+  </div>
+
+  <script src="renderer.js"></script>
+</body>
+</html>

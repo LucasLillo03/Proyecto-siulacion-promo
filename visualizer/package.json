@@ -1,0 +1,13 @@
+{
+  "name": "powerdevs-visualizer",
+  "version": "1.0.0",
+  "description": "Visualizador de graficos para simulacion PowerDEVS de bomba de infusion",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "start:dev": "electron . --no-sandbox"
+  },
+  "devDependencies": {
+    "electron": "^28.0.0"
+  }
+}
