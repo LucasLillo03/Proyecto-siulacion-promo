@@ -154,7 +154,7 @@ Coupled
                 File = Str; sen_flujo_output.csv ; file name
                 }
             }
-        Atomic
+            Atomic
             {
             Name = sen_fin_bolsa
             Ports = 1 ; 1
@@ -192,6 +192,42 @@ Coupled
                 {
                 File = Str; num_ev_finBolsa.txt ; file name
                 Inputs = Str; %Inputs ; Number of Inputs
+                }
+            }
+        Atomic
+            {
+            Name = accionador_bolsa
+            Ports = 2 ; 1
+            Path = mysources/accionador_bolsa.h
+            Description = Atomic DEVS model
+            Graphic
+                {
+                Position = -29580 ; -8130
+                Dimension = 675 ; 675
+                Direction = Right
+                Color = 15
+                Icon = None
+                }
+            Parameters
+                {
+                }
+            }
+        Atomic
+            {
+            Name = actuador_bomba
+            Ports = 1 ; 1
+            Path = mysources/actuador_bomba.h
+            Description = Atomic DEVS model
+            Graphic
+                {
+                Position = -41580 ; -8535
+                Dimension = 675 ; 720
+                Direction = Right
+                Color = 15
+                Icon = None
+                }
+            Parameters
+                {
                 }
             }
         Line

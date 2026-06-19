@@ -45,6 +45,16 @@ Root-Coordinator
     Path = sinks/ev_count2.h
     Parameters = "num_ev_finBolsa.txt",1.000000e+00
    }
+  Simulator
+   {
+    Path = mysources/accionador_bolsa.h
+    Parameters = 
+   }
+  Simulator
+   {
+    Path = mysources/actuador_bomba.h
+    Parameters = 
+   }
   EIC
    {
    }

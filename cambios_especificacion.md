@@ -7,3 +7,6 @@ Sensor de fin bolsa:
     Se agrego un parametro "capacidadMaxima" para definir el contenido inicial de la bolsa.
     Se corrigieron las condiciones teniendo en cuenta tambien el tiempo pasado en el estado y la division por 3600.
     
+
+Actuador de bomba:
+    En la especificacion, cuando el actuador no podia ajustar el caudal tardaba un tiempo sigma_ajuste en generar la salida. lo mas correcto (nuestra interpretacion) es que se simule que el actuador realiza el intento de corregir hasta que llega el tiempo maximo esperado por el sistema y lo deja de intentar. Nuevos parametros de simulacion: mediaLatenciaActuador (default 0.25)
