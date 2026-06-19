@@ -2,11 +2,6 @@ Root-Coordinator
  {
   Simulator
    {
-    Path = mysources/set_semilla.h
-    Parameters = 
-   }
-  Simulator
-   {
     Path = mysources/gen_orden_medica.h
     Parameters = 2.000000e-01,1.800000e+02,4.000000e+01
    }
@@ -35,6 +30,11 @@ Root-Coordinator
     Path = mysources/gen_alarmacritica.h
     Parameters = 
    }
+  Simulator
+   {
+    Path = sinks\to_disk.h
+    Parameters = "sen_flujo_output.csv"
+   }
   EIC
    {
    }
@@ -43,8 +43,9 @@ Root-Coordinator
    }
   IC
    {
-    (1,0);(4,0)
-    (3,0);(5,0)
-    (6,0);(3,0)
+    (0,0);(3,0)
+    (2,0);(4,0)
+    (5,0);(2,0)
+    (1,0);(6,0)
    }
  }

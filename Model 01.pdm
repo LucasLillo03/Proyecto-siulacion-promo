@@ -20,31 +20,13 @@ Coupled
         {
         Atomic
             {
-            Name = set_semilla
-            Ports = 1 ; 1
-            Path = mysources/set_semilla.h
-            Description = Atomic DEVS model
-            Graphic
-                {
-                Position = -13980 ; -9135
-                Dimension = 675 ; 720
-                Direction = Right
-                Color = 15
-                Icon = None
-                }
-            Parameters
-                {
-                }
-            }
-        Atomic
-            {
             Name = gen_orden_medica
             Ports = 0 ; 1
             Path = mysources/gen_orden_medica.h
             Description = Atomic DEVS model
             Graphic
                 {
-                Position = -10005 ; -8055
+                Position = -36180 ; -9105
                 Dimension = 675 ; 675
                 Direction = Right
                 Color = 15
@@ -65,7 +47,7 @@ Coupled
             Description = Atomic DEVS model
             Graphic
                 {
-                Position = -10005 ; -6660
+                Position = -36180 ; -7710
                 Dimension = 675 ; 720
                 Direction = Right
                 Color = 15
@@ -85,7 +67,7 @@ Coupled
             Description = Atomic DEVS model
             Graphic
                 {
-                Position = -10005 ; -5160
+                Position = -36180 ; -6210
                 Dimension = 675 ; 720
                 Direction = Right
                 Color = 15
@@ -105,7 +87,7 @@ Coupled
             Description = Save the values (event,t) in a file.
             Graphic
                 {
-                Position = -6480 ; -8055
+                Position = -34305 ; -9105
                 Dimension = 675 ; 675
                 Direction = Right
                 Color = 15
@@ -124,7 +106,7 @@ Coupled
             Description = Save the values (event,t) in a file.
             Graphic
                 {
-                Position = -6405 ; -5130
+                Position = -34305 ; -6180
                 Dimension = 675 ; 675
                 Direction = Right
                 Color = 15
@@ -143,7 +125,7 @@ Coupled
             Description = Atomic DEVS model
             Graphic
                 {
-                Position = -13755 ; -5160
+                Position = -38055 ; -6210
                 Dimension = 675 ; 720
                 Direction = Right
                 Color = 15
@@ -153,26 +135,52 @@ Coupled
                 {
                 }
             }
+        Atomic
+            {
+            Name = To Disk2
+            Ports = 1 ; 0
+            Path = sinks\to_disk.h
+            Description = Save the values (event,t) in a file.
+            Graphic
+                {
+                Position = -34305 ; -7680
+                Dimension = 675 ; 675
+                Direction = Right
+                Color = 15
+                Icon = %sinks%todisk.svg
+                }
+            Parameters
+                {
+                File = Str; sen_flujo_output.csv ; file name
+                }
+            }
+        Line
+            {
+            Source = Cmp ;  1 ;  1 ; 0
+            Sink = Cmp ;  4 ;  1 ; -1
+            PointX = -35400 ; -35400 ; -34440
+            PointY = -8775 ; -8775 ; -8775
+            }
+        Line
+            {
+            Source = Cmp ;  3 ;  1 ; 0
+            Sink = Cmp ;  5 ;  1 ; -1
+            PointX = -35400 ; -35400 ; -34440
+            PointY = -5850 ; -5850 ; -5850
+            }
+        Line
+            {
+            Source = Cmp ;  6 ;  1 ; 0
+            Sink = Cmp ;  3 ;  1 ; -1
+            PointX = -37275 ; -37275 ; -36315
+            PointY = -5850 ; -5850 ; -5850
+            }
         Line
             {
             Source = Cmp ;  2 ;  1 ; 0
-            Sink = Cmp ;  5 ;  1 ; -1
-            PointX = -9225 ; -9225 ; -6615
-            PointY = -7725 ; -7725 ; -7725
-            }
-        Line
-            {
-            Source = Cmp ;  4 ;  1 ; 0
-            Sink = Cmp ;  6 ;  1 ; -1
-            PointX = -9225 ; -9225 ; -6540
-            PointY = -4800 ; -4800 ; -4800
-            }
-        Line
-            {
-            Source = Cmp ;  7 ;  1 ; 0
-            Sink = Cmp ;  4 ;  1 ; -1
-            PointX = -12975 ; -12975 ; -10140
-            PointY = -4800 ; -4800 ; -4800
+            Sink = Cmp ;  7 ;  1 ; -1
+            PointX = -35400 ; -35400 ; -34440
+            PointY = -7350 ; -7350 ; -7350
             }
         }
     }
