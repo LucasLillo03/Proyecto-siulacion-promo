@@ -67,7 +67,7 @@ async function toggleFile(filename) {
     x,
     y,
     type: 'scatter',
-    mode: 'lines+markers',
+    mode: filename.includes('.line') ? 'lines+markers' : 'markers',
     name: filename.replace('.csv', ''),
     marker: { size: 4, color: colorPalette[colorIdx] },
     line: { width: 2, color: colorPalette[colorIdx] },
