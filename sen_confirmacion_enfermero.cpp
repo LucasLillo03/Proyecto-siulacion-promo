@@ -16,7 +16,7 @@ desvioConfirmacion = va_arg(parameters, double);
 
 notificacionAlarma = ALARMA_CAUDAL_APAGADA; 
 confirmacionEnfermero = true;
-sigma = inf;
+sigma = INF_VAL;
 
  
 
@@ -26,7 +26,7 @@ double sen_confirmacion_enfermero::ta(double t) {
 return sigma; 
 }
 void sen_confirmacion_enfermero::dint(double t) {
-sigma = inf; 
+sigma = INF_VAL; 
 }
 void sen_confirmacion_enfermero::dext(Event x, double t) {
 //The input event is in the 'x' variable.
@@ -40,7 +40,7 @@ double valorAlarma = *(AlarmaCaudal*)x.value;
 		sigma = std::abs(randomNormal(mediaConfirmacion, desvioConfirmacion));
 	}
 else{
-	sigma = inf; 
+	sigma = INF_VAL; 
 }
 }
 Event sen_confirmacion_enfermero::lambda(double t) {

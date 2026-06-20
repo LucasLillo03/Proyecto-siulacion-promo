@@ -26,7 +26,7 @@ double actuador_bomba::ta(double t) {
 return sigma;
 }
 void actuador_bomba::dint(double t) {
-sigma = inf;
+sigma = INF_VAL;
 }
 void actuador_bomba::dext(Event x, double t) {
 //The input event is in the 'x' variable.

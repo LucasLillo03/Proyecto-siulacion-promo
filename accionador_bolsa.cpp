@@ -11,7 +11,7 @@ va_start(parameters,t);
 //where:
 //      %Name% is the parameter name
 //	%Type% is the parameter type
-sigma = inf;
+sigma = INF_VAL;
 salida = 0;
 }
 double accionador_bolsa::ta(double t) {
@@ -19,7 +19,7 @@ double accionador_bolsa::ta(double t) {
     return sigma;
 }
 void accionador_bolsa::dint(double t) {
-    sigma = inf;
+    sigma = INF_VAL;
 }
 void accionador_bolsa::dext(Event x, double t) {
 //The input event is in the 'x' variable.
