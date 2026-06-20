@@ -10,6 +10,7 @@
 #include "constantes.h"
 #include "random_utils.h"
 
+// necesarios para la comunicacion entre modulos.
 
 class desvio_caudal: public Simulator { 
 // Declare the state,
@@ -31,6 +32,7 @@ bool correccionPendiente;
 bool sistemaDetenido;
 
 Alarmas salidaAlarma;
+double salidaAlarmaValor;
 
 public:
 	desvio_caudal(const char *n): Simulator(n) {};
