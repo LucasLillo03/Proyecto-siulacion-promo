@@ -99,7 +99,7 @@ void desvio_caudal::dext(Event x, double t) {
         if (caudalRecetado * desvioMaximo < abs(caudalRecetado - valorEntrante)){
             //si el estado es normal, se pasa a tolerancia de desvio, si ya estaba en tolerancia de desvio o desviado, se mantiene en ese estado y se reinicia el tiempo de tolerancia
             if(estadoCaudal == CAUDAL_NORMAL){
-                printLog("entrada %.2f desvio caudal detectado. valor actual: %.2f, valor recetado: %.2f \n", t, valorEntrante, caudalRecetado);
+                // printLog("entrada %.2f desvio caudal detectado. valor actual: %.2f, valor recetado: %.2f \n", t, valorEntrante, caudalRecetado);
                 estadoCaudal = CAUDAL_TOLERANCIA_DESVIO;
                 caudalActual = valorEntrante;
                 sigma = 0;
@@ -169,7 +169,7 @@ Event desvio_caudal::lambda(double t) {
     else if(estadoCaudal == CAUDAL_CRITICO){
         sistemaDetenido = true;
         salidaAlarma.caudal = ALARMA_CRITICA;
-        printLog("salida %.2f: alarma critica\n", t);
+        printLog("salida %.2f: ALARMA CRITICA\n", t);
         return seleccionarSalida(t);
     }
     else{

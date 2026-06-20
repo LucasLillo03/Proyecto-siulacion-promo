@@ -57,5 +57,5 @@ Event sen_fin_bolsa::lambda(double t) {
 return Event(&estado, FIN_BOLSA);
 }
 void sen_fin_bolsa::exit() {
-    printLog("contenidoFinal = %f", contenidoRestante);
+    printLog("contenidoFinal = %f \n", contenidoRestante);
 }
