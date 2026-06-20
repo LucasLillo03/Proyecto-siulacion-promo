@@ -1,40 +1,48 @@
 #include "sen_flujo.h"
+#include <algorithm> 
+#include <math.h>
 #include "random_utils.h"
-#include <cmath>
 #define SENSOR_FLUJO 0
 
 void sen_flujo::init(double t,...) {
-//The 'parameters' variable contains the parameters transferred from the editor.
-va_list parameters;
-va_start(parameters,t);
-//To get a parameter: %Name% = va_arg(parameters,%Type%)
-//where:
-//      %Name% is the parameter name
-//	%Type% is the parameter type
-periodoMuestreoFlujo = va_arg(parameters, double);
-desvioCaudal = va_arg(parameters, double);
+    //The 'parameters' variable contains the parameters transferred from the editor.
+    va_list parameters;
+    va_start(parameters,t);
+    //To get a parameter: %Name% = va_arg(parameters,%Type%)
+    //where:
+    //      %Name% is the parameter name
+    //	%Type% is the parameter type
+    periodoMuestreoFlujo = va_arg(parameters, double);
+    desvioCaudal = va_arg(parameters, double);
 
-caudalMedido = 0.0; 
-sigma = periodoMuestreoFlujo;
+    caudalMedido = 0.0; 
+    sigma = periodoMuestreoFlujo;
 
- 
-
- 
+    sistemaDetenido = true;
 }
+
 double sen_flujo::ta(double t) {
 //This function returns a double.
 return sigma; 	
 }
 void sen_flujo::dint(double t) {
     caudalMedido = caudalMedido <= 0 ? 0 : std::fabs(randomNormal(caudalMedido, desvioCaudal)); //TODO por alguna razon siguen saliendo valores negativos
-    sigma = periodoMuestreoFlujo;   
+    sigma = sistemaDetenido ? INF_VAL : periodoMuestreoFlujo;   
 }
 void sen_flujo::dext(Event x, double t) {
     double valorCaudal = *(double*)x.value; 
 
-    caudalMedido = valorCaudal <= 0 ? 0 : std::fabs(randomNormal(valorCaudal, desvioCaudal)); 
+    if (sistemaDetenido && valorCaudal > 0) {
+        sistemaDetenido = false;
+        sigma = 0;
+    }
+    else if (!sistemaDetenido && valorCaudal <= 0) {
+        sistemaDetenido = true; 
+    }
     
-    sigma = sigma - e;  
+    caudalMedido = std::fabs(randomNormal(valorCaudal, desvioCaudal)); 
+    
+    sigma = std::max(0.0, sigma - e);  
 }
 Event sen_flujo::lambda(double t) {
 //This function returns an Event:
