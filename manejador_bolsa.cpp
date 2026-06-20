@@ -41,12 +41,12 @@ void manejador_bolsa::dext(Event x, double t) {
 //     'x.value' is the value (pointer to void)
 //     'x.port' is the port number
 //     'e' is the time elapsed since last transition
-    EstadoBolsa entrada = *(EstadoBolsa*) x.value;
+    double entrada = *(double*) x.value;
 
-    if(entrada == AGOTANDOSE){
+    if(entrada == VALOR_BOLSA_AGOTANDOSE){
         sigma = 0;
         estadoManejador = MANEJADOR_AGOTANDOSE;
-    } else if(entrada == VACIA){
+    } else if(entrada == VALOR_BOLSA_VACIA){
         sigma = 0;
         estadoManejador = MANEJADOR_VACIA;
     } else {
@@ -63,11 +63,12 @@ Event manejador_bolsa::lambda(double t) {
         printLog("Salida %.2f: ALARMA BAJA\n", t);
 
         salidaFinBolsa.bolsa = ALARMA_BAJA;
-        return Event(&salidaFinBolsa, ALARMA_BAJA_PUERTO);
+        salida = VALOR_ALARMA_BAJA;
+
+        return Event(&salida, ALARMA_BAJA_PUERTO);
     } else if(estadoManejador == MANEJADOR_VACIA){
         printLog("Salida %.2f: BOMBA DETENIDA\n", t);
-
-        double salida = 0;
+        salida = 0;
         return Event(&salida, DETENER_BOMBA_PUERTO);
     }else {
         // no deberia pasar
