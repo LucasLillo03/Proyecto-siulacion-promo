@@ -43,12 +43,8 @@ double desvio_caudal::ta(double t) {
     return (sigma_ec < sigma)? sigma_ec : sigma; 
 }
 void desvio_caudal::dint(double t) {
-    if(correccionPendiente){ 
-        sigma = 0; 
-        return; 
-    }    
     //se agota el tiempo de tolerancia de desvio
-    else if (sigma_ec < sigma && estadoCaudal == CAUDAL_TOLERANCIA_DESVIO){
+    if (sigma_ec < sigma && estadoCaudal == CAUDAL_TOLERANCIA_DESVIO){
         estadoCaudal = CAUDAL_DESVIADO;
         sigma = INF_VAL;
         sigma_ec = tiempoMedioHastaCritico;
@@ -63,9 +59,12 @@ void desvio_caudal::dint(double t) {
         sigma = INF_VAL; 
     }
     else{
-         printLog("Error: Caso de Desvio Caudal no admitido.");
-         throw std::runtime_error("Error: Caso de Desvio Caudal no admitido.");
+        printLog("Error: Caso de Desvio Caudal no admitido.");
+        throw std::runtime_error("Error: Caso de Desvio Caudal no admitido.");
     }
+    if(correccionPendiente){ 
+        sigma = 0;  
+    }    
 }
 void desvio_caudal::dext(Event x, double t) {
     double demoraInicio = randomUniformConMaximo(tiempoMaximoInicio);
@@ -92,19 +91,14 @@ void desvio_caudal::dext(Event x, double t) {
 
 
     //entrada sensor de flujo
-    else if (x.port == PUERTO_SENSOR_FLUJO){
-        //si el sistema esta detenido se ignoran las entradas del sensor de flujo
-        
-        if (sistemaDetenido){
-            return;
-        }
-
+    else if (x.port == PUERTO_SENSOR_FLUJO && !sistemaDetenido){
         double valorEntrante = *(double*)x.value;
 
         //si el desvio es mayor al permitido, se inicia el proceso de alarma
-        if (caudalRecetado * desvioMaximo < abs(caudalRecetado - caudalActual)){
+        if (caudalRecetado * desvioMaximo < abs(caudalRecetado - valorEntrante)){
+            //si el estado es normal, se pasa a tolerancia de desvio, si ya estaba en tolerancia de desvio o desviado, se mantiene en ese estado y se reinicia el tiempo de tolerancia
             if(estadoCaudal == CAUDAL_NORMAL){
-                printLog("entrada %.2f desvio caudal detectado. valor actual: %.2f, valor recetado: %.2f \n", t, valorEntrante, caudalRecetado);
+                // printLog("entrada %.2f desvio caudal detectado. valor actual: %.2f, valor recetado: %.2f \n", t, valorEntrante, caudalRecetado);
                 estadoCaudal = CAUDAL_TOLERANCIA_DESVIO;
                 caudalActual = valorEntrante;
                 sigma = 0;
@@ -112,6 +106,7 @@ void desvio_caudal::dext(Event x, double t) {
             }
 
             else if(estadoCaudal != CAUDAL_CRITICO){
+                // printLog("entrada %.2f desvio caudal persiste. valor actual: %.2f, valor recetado: %.2f \n", t, valorEntrante, caudalRecetado);
                 caudalActual = valorEntrante;
                 sigma = 0;
                 sigma_ec = std::max(0.0, sigma_ec - e);
@@ -120,7 +115,8 @@ void desvio_caudal::dext(Event x, double t) {
         //si no hay desvio o es menor al permitido, se actualiza el caudal actual y se vuelve a estado normal
         else{
             if (estadoCaudal != CAUDAL_NORMAL){
-                printLog("entrada %.2f: desvio caudal corregido. valor actual: %.2f, valor recetado: %.2f \n", t, valorEntrante, caudalRecetado);
+                // printLog("entrada %.2f: desvio caudal corregido. valor actual: %.2f, valor recetado: %.2f \n", t, valorEntrante, caudalRecetado);
+                printLog("entrada %.2f: desvio caudal corregido. \n", t);
             }
             caudalActual = valorEntrante;
             estadoCaudal = CAUDAL_NORMAL;
@@ -130,8 +126,8 @@ void desvio_caudal::dext(Event x, double t) {
     }
     //entrada de confirmacion del enfermero
     else if (x.port == PUERTO_CONFIRMACION_ENFERMERO){
-        printLog("entrada %.2f: confirmacion del enfermero \n", t);
         if (sistemaDetenido){
+            printLog("entrada %.2f: confirmacion del enfermero \n", t);
             estadoCaudal = CAUDAL_NORMAL;
             sigma = 0; 
             sigma_ec = INF_VAL;
@@ -159,6 +155,7 @@ Event desvio_caudal::lambda(double t) {
     if (estadoCaudal == CAUDAL_NORMAL || estadoCaudal == CAUDAL_TOLERANCIA_DESVIO){ 
         sistemaDetenido = false;
         salidaAlarma = ALARMA_CAUDAL_APAGADA;
+        // printLog("salida %.2f: alarma apagada\n", t);
         return seleccionarSalida(t);
     }
 
@@ -170,7 +167,6 @@ Event desvio_caudal::lambda(double t) {
 
     else if(estadoCaudal == CAUDAL_CRITICO){
         sistemaDetenido = true;
-        caudalRecetado = 0; 
         salidaAlarma = ALARMA_CRITICA;
         printLog("salida %.2f: alarma critica\n", t);
         return seleccionarSalida(t);
