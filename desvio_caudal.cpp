@@ -29,8 +29,8 @@ void desvio_caudal::init(double t,...) {
     caudalRecetado = 0;
     caudalActual = caudalRecetado; 
     estadoCaudal = CAUDAL_NORMAL;
-    sigma_ec = inf;
-    sigma = inf; 
+    sigma_ec = INF_VAL;
+    sigma = INF_VAL; 
 
     correccionPendiente = false;
     sistemaDetenido = true;
@@ -50,17 +50,17 @@ void desvio_caudal::dint(double t) {
     //se agota el tiempo de tolerancia de desvio
     else if (sigma_ec < sigma && estadoCaudal == CAUDAL_TOLERANCIA_DESVIO){
         estadoCaudal = CAUDAL_DESVIADO;
-        sigma = inf;
+        sigma = INF_VAL;
         sigma_ec = tiempoMedioHastaCritico;
     } 
     //se agota el tiempo de tolerancia antes de pasar a critica
     else if(sigma_ec < sigma && estadoCaudal == CAUDAL_DESVIADO){
         estadoCaudal = CAUDAL_CRITICO;
         sigma = 0;
-        sigma_ec = inf;
+        sigma_ec = INF_VAL;
     }
     else if(sigma < sigma_ec){
-        sigma = inf; 
+        sigma = INF_VAL; 
     }
     else{
          printLog("Error: Caso de Desvio Caudal no admitido.");
@@ -73,18 +73,28 @@ void desvio_caudal::dext(Event x, double t) {
     //Entrada de orden medica
     if (x.port == PUERTO_ORDEN_MEDICA){
         RangoCaudalRecetado valorEntrante = *(RangoCaudalRecetado*)x.value;
-
         caudalRecetado = valorEntrante;
+
+        if (caudalRecetado == 0){ 
+            sistemaDetenido = true;
+            estadoCaudal = CAUDAL_NORMAL;
+            sigma = INF_VAL;
+            sigma_ec = INF_VAL;
+            return;
+        }
+
         estadoCaudal = CAUDAL_NORMAL;
         sigma = demoraInicio; 
-        sigma_ec = inf;
+        sigma_ec = INF_VAL;
 
         printLog("entrada %.2f: NUEVA RECETA %.2f , incio en %.2f\n", t, valorEntrante, demoraInicio);
     }
 
+
     //entrada sensor de flujo
     else if (x.port == PUERTO_SENSOR_FLUJO){
         //si el sistema esta detenido se ignoran las entradas del sensor de flujo
+        
         if (sistemaDetenido){
             return;
         }
@@ -115,7 +125,7 @@ void desvio_caudal::dext(Event x, double t) {
             caudalActual = valorEntrante;
             estadoCaudal = CAUDAL_NORMAL;
             sigma = 0;
-            sigma_ec = inf;
+            sigma_ec = INF_VAL;
         }
     }
     //entrada de confirmacion del enfermero
@@ -124,7 +134,7 @@ void desvio_caudal::dext(Event x, double t) {
         if (sistemaDetenido){
             estadoCaudal = CAUDAL_NORMAL;
             sigma = 0; 
-            sigma_ec = inf;
+            sigma_ec = INF_VAL;
         }
     }
 
