@@ -15,7 +15,7 @@ class manejador_bolsa: public Simulator {
 
 	double sigma;
 	EstadoManejadorBolsa estadoManejador;
-	AlarmaFinBolsa salidaFinBolsa;
+	Alarmas salidaFinBolsa;
 
 public:
 	manejador_bolsa(const char *n): Simulator(n) {};

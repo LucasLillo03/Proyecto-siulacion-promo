@@ -50,7 +50,7 @@ Root-Coordinator
   Simulator
    {
     Path = mysources/sen_flujo.h
-    Parameters = 1.000000e+00,1.000000e+01
+    Parameters = 1.000000e+00,5.000000e+00
    }
   Simulator
    {
@@ -60,7 +60,7 @@ Root-Coordinator
   Simulator
    {
     Path = mysources/sen_fin_bolsa.h
-    Parameters = 2.000000e+01,1.000000e+02
+    Parameters = 2.000000e+01,5.000000e+01
    }
   Simulator
    {

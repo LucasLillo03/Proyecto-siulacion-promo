@@ -34,7 +34,8 @@ void desvio_caudal::init(double t,...) {
 
     correccionPendiente = false;
     sistemaDetenido = true;
-    salidaAlarma = ALARMA_CAUDAL_APAGADA;
+    salidaAlarma.tipo = ORIGEN_CAUDAL;
+    salidaAlarma.caudal = ALARMA_CAUDAL_APAGADA;
 }
 double desvio_caudal::ta(double t) {
     if (sigma_ec == sigma){
@@ -116,7 +117,7 @@ void desvio_caudal::dext(Event x, double t) {
         else{
             if (estadoCaudal != CAUDAL_NORMAL){
                 // printLog("entrada %.2f: desvio caudal corregido. valor actual: %.2f, valor recetado: %.2f \n", t, valorEntrante, caudalRecetado);
-                printLog("entrada %.2f: desvio caudal corregido. \n", t);
+                // printLog("entrada %.2f: desvio caudal corregido. \n", t);
             }
             caudalActual = valorEntrante;
             estadoCaudal = CAUDAL_NORMAL;
@@ -154,20 +155,20 @@ Event desvio_caudal::seleccionarSalida(double t){
 Event desvio_caudal::lambda(double t) {
     if (estadoCaudal == CAUDAL_NORMAL || estadoCaudal == CAUDAL_TOLERANCIA_DESVIO){ 
         sistemaDetenido = false;
-        salidaAlarma = ALARMA_CAUDAL_APAGADA;
+        salidaAlarma.caudal = ALARMA_CAUDAL_APAGADA;
         // printLog("salida %.2f: alarma apagada\n", t);
         return seleccionarSalida(t);
     }
 
     else if(estadoCaudal == CAUDAL_DESVIADO){ 
-        salidaAlarma = ALARMA_MEDIA;
+        salidaAlarma.caudal = ALARMA_MEDIA;
         printLog("salida %.2f: alarma media\n", t);
         return seleccionarSalida(t);
     }
 
     else if(estadoCaudal == CAUDAL_CRITICO){
         sistemaDetenido = true;
-        salidaAlarma = ALARMA_CRITICA;
+        salidaAlarma.caudal = ALARMA_CRITICA;
         printLog("salida %.2f: alarma critica\n", t);
         return seleccionarSalida(t);
     }

@@ -298,7 +298,7 @@ Coupled
                     Parameters
                         {
                         periodoMuestreoFlujo = Val; 1 ; 
-                        desvioCaudal = Val; 10 ; 
+                        desvioCaudal = Val; 5 ; 
                         }
                     }
                 Atomic
@@ -338,7 +338,7 @@ Coupled
                     Parameters
                         {
                         margenBolsa = Val; 20 ; 
-                        capacidadMaxima = Val; 100 ; 
+                        capacidadMaxima = Val; 50 ; 
                         }
                     }
                 Atomic
