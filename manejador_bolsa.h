@@ -14,7 +14,7 @@ class manejador_bolsa: public Simulator {
 // and parameters
 
 	double sigma;
-	EstadoBolsa ultimaEntrada;
+	EstadoManejadorBolsa estadoManejador;
 	AlarmaFinBolsa salidaFinBolsa;
 
 public:
