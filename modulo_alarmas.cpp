@@ -55,6 +55,7 @@ void modulo_alarmas::dext(Event x, double t) {
         } else {
             ac = alarmaRecibida.caudal;
             sigma_ac = 0;
+            printLog("entrada %.2f: alarma de caudal %s\n", t, (ac == ALARMA_MEDIA) ? "MEDIA" : "CRITICA");
         }
     }
     else if (alarmaRecibida.tipo == ORIGEN_BOLSA && alarmaRecibida.bolsa == ALARMA_BAJA) {

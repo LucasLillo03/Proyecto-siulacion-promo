@@ -15,7 +15,7 @@ Root-Coordinator
       Simulator
        {
         Path = mysources/desvio_caudal.h
-        Parameters = 3.000000e+00,5.000000e+00,3.000000e+01,1.000000e-01
+        Parameters = 3.000000e+00,5.000000e+00,1.000000e+01,1.000000e-01
        }
       Simulator
        {

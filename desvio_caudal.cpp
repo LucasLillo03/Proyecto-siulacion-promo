@@ -36,6 +36,7 @@ void desvio_caudal::init(double t,...) {
     sistemaDetenido = true;
     salidaAlarma.tipo = ORIGEN_CAUDAL;
     salidaAlarma.caudal = ALARMA_CAUDAL_APAGADA;
+    salidaCorreccion = caudalRecetado;
 }
 double desvio_caudal::ta(double t) {
     if (sigma_ec == sigma){
@@ -149,19 +150,21 @@ Event desvio_caudal::seleccionarSalida(double t){
     }
     else{
         correccionPendiente = false;
-        return Event(&caudalRecetado, PUERTO_CORRECCION);
+        return Event(&salidaCorreccion, PUERTO_CORRECCION);
     }
 }
 Event desvio_caudal::lambda(double t) {
     if (estadoCaudal == CAUDAL_NORMAL || estadoCaudal == CAUDAL_TOLERANCIA_DESVIO){ 
         sistemaDetenido = false;
         salidaAlarma.caudal = ALARMA_CAUDAL_APAGADA;
+        salidaCorreccion = caudalRecetado;
         // printLog("salida %.2f: alarma apagada\n", t);
         return seleccionarSalida(t);
     }
 
     else if(estadoCaudal == CAUDAL_DESVIADO){ 
         salidaAlarma.caudal = ALARMA_MEDIA;
+        salidaCorreccion = caudalRecetado;
         printLog("salida %.2f: alarma media\n", t);
         return seleccionarSalida(t);
     }
@@ -169,6 +172,7 @@ Event desvio_caudal::lambda(double t) {
     else if(estadoCaudal == CAUDAL_CRITICO){
         sistemaDetenido = true;
         salidaAlarma.caudal = ALARMA_CRITICA;
+        salidaCorreccion = 0;
         printLog("salida %.2f: ALARMA CRITICA\n", t);
         return seleccionarSalida(t);
     }

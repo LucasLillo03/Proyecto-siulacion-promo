@@ -31,6 +31,7 @@ bool correccionPendiente;
 bool sistemaDetenido;
 
 Alarmas salidaAlarma;
+double salidaCorreccion;
 
 public:
 	desvio_caudal(const char *n): Simulator(n) {};

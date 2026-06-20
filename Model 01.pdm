@@ -167,7 +167,7 @@ Coupled
                         {
                         tiempoMaximoInicio = Val; 3 ; 
                         tiempoMaximoDesvio = Val; 5 ; 
-                        tiempoMedioHastaCritico = Val; 30 ; 
+                        tiempoMedioHastaCritico = Val; 10 ; 
                         desvioMaximo = Val; 0.1 ; 
                         }
                     }

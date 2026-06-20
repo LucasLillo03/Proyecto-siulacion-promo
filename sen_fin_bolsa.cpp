@@ -33,7 +33,7 @@ double valorEntrada = (*(double*)x.value * e) / 3600; // se divide por 3600 ya q
 if (contenidoRestante - valorEntrada <= margenBolsa && contenidoRestante > margenBolsa){
     contenidoRestante = contenidoRestante - valorEntrada;
     estado = AGOTANDOSE; 
-    printLog("estado AGOTANDOSE \n");
+    printLog("%.2f estado AGOTANDOSE \n", t);
     sigma = 0;
 }
 else if (contenidoRestante - valorEntrada <= 0 && contenidoRestante > 0){
