@@ -30,14 +30,14 @@ void modulo_alarmas::dint(double t) {
         ab = IDLE_ALARMA_FIN_BOLSA;
         sigma_ab = INF_VAL;
     }
-    else if(ab != ALARMA_BAJA && ac == ALARMA_MEDIA){
-        ac = ALARMA_CAUDAL_APAGADA;
-        sigma_ac = INF_VAL;
-    }
     else if(ab != ALARMA_BAJA && ac == ALARMA_CRITICA && estadoCritico == CONFIRMANDO){
         ac = ALARMA_CRITICA;
         sigma_ac = repeticionAlarmaCritica;
     } 
+    else if(ab != ALARMA_BAJA && ac == ALARMA_MEDIA){
+        ac = ALARMA_CAUDAL_APAGADA;
+        sigma_ac = INF_VAL;
+    }
     else{
         ac = ALARMA_CRITICA;
         sigma_ac = tiempoConfirmacionCritica;
@@ -45,30 +45,57 @@ void modulo_alarmas::dint(double t) {
     }
 }
 void modulo_alarmas::dext(Event x, double t) {
-    Alarmas alarmaRecibida = *(Alarmas*)x.value;
-
-    if (alarmaRecibida.tipo == ORIGEN_CAUDAL) {
-        if (alarmaRecibida.caudal == ALARMA_CAUDAL_APAGADA) {
+    double alarmaRecibida = *(double*)x.value;
+    
+    if(alarmaRecibida == VALOR_ALARMA_APAGADA){
             ac = ALARMA_CAUDAL_APAGADA;
             sigma_ac = INF_VAL;
             estadoCritico = IDLE_CRITICO;
-        } else {
-            ac = alarmaRecibida.caudal;
+    }
+    else if(alarmaRecibida == VALOR_ALARMA_MEDIA){
+            ac = ALARMA_MEDIA;
             sigma_ac = 0;
-        }
     }
-    else if (alarmaRecibida.tipo == ORIGEN_BOLSA && alarmaRecibida.bolsa == ALARMA_BAJA) {
-        sigma_ac = (sigma_ac > e) ? sigma_ac - e : 0.0;
-        sigma_ab = 0;
-        ab = ALARMA_BAJA;
+    else if (alarmaRecibida == VALOR_ALARMA_CRITICA){
+            ac = ALARMA_CRITICA;
+            sigma_ac = 0;
     }
+    else if(alarmaRecibida == VALOR_ALARMA_BAJA){
+            sigma_ac = (sigma_ac > e) ? sigma_ac - e : 0.0;
+            sigma_ab = 0;
+            ab = ALARMA_BAJA;
+    }
+    else{}
+    // if (alarmaRecibida.tipo == ORIGEN_CAUDAL) {
+    //     if (alarmaRecibida == VALOR_ALARMA_APAGADA) {
+    //         ac = ALARMA_CAUDAL_APAGADA;
+    //         sigma_ac = INF_VAL;
+    //         estadoCritico = IDLE_CRITICO;
+    //     } else {
+    //         ac = alarmaRecibida.caudal;
+    //         sigma_ac = 0;
+    //     }
+    // }
+    // else if (alarmaRecibida.tipo == ORIGEN_BOLSA && alarmaRecibida.bolsa == ALARMA_BAJA) {
+    //     sigma_ac = (sigma_ac > e) ? sigma_ac - e : 0.0;
+    //     sigma_ab = 0;
+    //     ab = ALARMA_BAJA;
+    // }
 }
 Event modulo_alarmas::lambda(double t) {
     if (ab == ALARMA_BAJA){
-        return Event(&ab, PUERTO_ALARMA_BAJA);
+        salida_alarmas = VALOR_ALARMA_BAJA;
+        return Event(&salida_alarmas, PUERTO_ALARMA_BAJA);
     }
     else{
-        return Event(&ac, PUERTO_NOTIFICACION_ALARMA);
+        if(ac == ALARMA_CRITICA){
+            salida_alarmas = VALOR_ALARMA_CRITICA;
+        } else if (ac == ALARMA_MEDIA){
+            salida_alarmas = VALOR_ALARMA_MEDIA;
+        } else{
+            salida_alarmas = VALOR_ALARMA_APAGADA;
+        }
+        return Event(&salida_alarmas, PUERTO_NOTIFICACION_ALARMA);
     }
 }
 void modulo_alarmas::exit() {

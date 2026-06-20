@@ -21,6 +21,8 @@ double sigma_ac;
 AlarmaFinBolsa ab;
 double sigma_ab;
 
+double salida_alarmas;
+
 EstadoCritico estadoCritico; 
 
 double tiempoConfirmacionCritica;

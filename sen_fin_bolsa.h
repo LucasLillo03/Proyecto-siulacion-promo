@@ -22,6 +22,8 @@ double contenidoRestante;
 EstadoBolsa estado;
 double sigma;
 
+double salida;
+
 double margenBolsa;
 double capacidadMaxima;
 

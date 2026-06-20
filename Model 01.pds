@@ -102,6 +102,11 @@ Root-Coordinator
     Path = sinks/ev_count2.h
     Parameters = "./../atomics/mysources/outputs/alarmas_salientes.txt",1.000000e+00
    }
+  Simulator
+   {
+    Path = sinks\to_disk.h
+    Parameters = "./../atomics/mysources/outputs/Alarmas_caudal.csv"
+   }
   EIC
    {
    }
@@ -126,5 +131,6 @@ Root-Coordinator
     (6,0);(3,0)
     (5,0);(11,0)
     (1,0);(12,0)
+    (6,0);(13,0)
    }
  }

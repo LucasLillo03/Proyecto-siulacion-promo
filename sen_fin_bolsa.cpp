@@ -1,4 +1,6 @@
 #include "sen_fin_bolsa.h"
+#include "constantes.h"
+
 #define FIN_BOLSA 0 
 
 void sen_fin_bolsa::init(double t,...) {
@@ -52,9 +54,15 @@ Event sen_fin_bolsa::lambda(double t) {
 //where:
 //     %&Value% points to the variable which contains the value.
 //     %NroPort% is the port number (from 0 to n-1)
+    if(estado == AGOTANDOSE){
+        salida = VALOR_BOLSA_AGOTANDOSE;
+    } else if(estado == VACIA) {
+        salida = VALOR_BOLSA_VACIA;
+    } else {
+        salida = VALOR_BOLSA_NORMAL;
+    }
 
-
-return Event(&estado, FIN_BOLSA);
+return Event(&salida, FIN_BOLSA);
 }
 void sen_fin_bolsa::exit() {
     printLog("contenidoFinal = %f \n", contenidoRestante);

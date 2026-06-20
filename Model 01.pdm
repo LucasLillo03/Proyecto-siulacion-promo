@@ -496,6 +496,25 @@ Coupled
                         Inputs = Str; %Inputs ; Number of Inputs
                         }
                     }
+                Atomic
+                    {
+                    Name = To Disk3
+                    Ports = 1 ; 0
+                    Path = sinks\to_disk.h
+                    Description = Save the values (event,t) in a file.
+                    Graphic
+                        {
+                        Position = -52305 ; -19230
+                        Dimension = 675 ; 675
+                        Direction = Right
+                        Color = 15
+                        Icon = %sinks%todisk.svg
+                        }
+                    Parameters
+                        {
+                        File = Str; ./../atomics/mysources/outputs/Alarmas_caudal.csv ; file name
+                        }
+                    }
                 Line
                     {
                     Source = Cmp ;  1 ;  1 ; 0
@@ -607,6 +626,13 @@ Coupled
                     Sink = Cmp ;  13 ;  1 ; -1
                     PointX = -56325 ; -55890 ; -55890
                     PointY = -17850 ; -17850 ; -16575
+                    }
+                Line
+                    {
+                    Source = Cmp ;  7 ;  1 ; 0
+                    Sink = Cmp ;  14 ;  1 ; -1
+                    PointX = -54225 ; -53925 ; -53925 ; -52440
+                    PointY = -18000 ; -18000 ; -18900 ; -18900
                     }
         }
     }
