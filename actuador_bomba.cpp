@@ -26,7 +26,7 @@ double actuador_bomba::ta(double t) {
 return sigma;
 }
 void actuador_bomba::dint(double t) {
-sigma = inf;
+sigma = INF_VAL;
 }
 void actuador_bomba::dext(Event x, double t) {
 //The input event is in the 'x' variable.
@@ -67,7 +67,7 @@ Event actuador_bomba::lambda(double t) {
 //     %&Value% points to the variable which contains the value.
 //     %NroPort% is the port number (from 0 to n-1)
 
-
+// printLog("salida %.2f: ajuste de caudal realizado. valor actual: %.2f \n", t, ultimaMedicion);
 return Event(&ultimaMedicion, CAUDAL_ACTUAL_PUERTO);
 }
 void actuador_bomba::exit() {

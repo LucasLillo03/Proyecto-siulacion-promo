@@ -25,7 +25,7 @@ bool confirmacionEnfermero;
 double desvioConfirmacion;
 double mediaConfirmacion;
 
-
+bool confirmacionPendiente;
 
 
 

@@ -59,4 +59,11 @@ enum RangoEstadoCaudal {
     CAUDAL_CRITICO
 };
 
+//9. Estados internos del manejador de bolsa
+enum EstadoManejadorBolsa {
+    MANEJADOR_NORMAL,
+    MANEJADOR_AGOTANDOSE,
+    MANEJADOR_VACIA
+};
+
 #endif // TIPOS_BOMBA_H

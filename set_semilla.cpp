@@ -13,7 +13,7 @@ va_start(parameters,t);
     srand(semilla);
 }
 double set_semilla::ta(double t) {
-    return inf;
+    return INF_VAL;
 }
 void set_semilla::dint(double t) {
 

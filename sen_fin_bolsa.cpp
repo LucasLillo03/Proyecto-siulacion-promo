@@ -14,14 +14,14 @@ capacidadMaxima = va_arg(parameters, double);
 
 contenidoRestante = capacidadMaxima;
 estado = NORMAL;
-sigma = inf;
+sigma = INF_VAL;
 }
 double sen_fin_bolsa::ta(double t) {
 //This function returns a double.
 return sigma;
 }
 void sen_fin_bolsa::dint(double t) {
-sigma = inf;
+sigma = INF_VAL;
 }
 void sen_fin_bolsa::dext(Event x, double t) {
 //The input event is in the 'x' variable.
@@ -33,6 +33,7 @@ double valorEntrada = (*(double*)x.value * e) / 3600; // se divide por 3600 ya q
 if (contenidoRestante - valorEntrada <= margenBolsa && contenidoRestante > margenBolsa){
     contenidoRestante = contenidoRestante - valorEntrada;
     estado = AGOTANDOSE; 
+    printLog("estado AGOTANDOSE \n");
     sigma = 0;
 }
 else if (contenidoRestante - valorEntrada <= 0 && contenidoRestante > 0){
@@ -42,7 +43,7 @@ else if (contenidoRestante - valorEntrada <= 0 && contenidoRestante > 0){
 }
 else{
     contenidoRestante = contenidoRestante - valorEntrada;
-    sigma = inf; 
+    sigma = INF_VAL; 
 }
 }
 Event sen_fin_bolsa::lambda(double t) {
@@ -56,6 +57,5 @@ Event sen_fin_bolsa::lambda(double t) {
 return Event(&estado, FIN_BOLSA);
 }
 void sen_fin_bolsa::exit() {
-//Code executed at the end of the simulation.
-
+    printLog("contenidoFinal = %f \n", contenidoRestante);
 }

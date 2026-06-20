@@ -12,10 +12,10 @@ va_start(parameters,t);
 //	%Type% is the parameter type
 
 ac = ALARMA_CAUDAL_APAGADA;
-sigma_ac = inf;
+sigma_ac = INF_VAL;
 
 ab = IDLE_ALARMA_FIN_BOLSA;
-sigma_ab = inf;
+sigma_ab = INF_VAL;
 
 estadoCritico = IDLE_CRITICO;
 
@@ -28,11 +28,11 @@ double modulo_alarmas::ta(double t) {
 void modulo_alarmas::dint(double t) {
     if (ab == ALARMA_BAJA){
         ab = IDLE_ALARMA_FIN_BOLSA;
-        sigma_ab = inf;
+        sigma_ab = INF_VAL;
     }
     else if(ab != ALARMA_BAJA && ac == ALARMA_MEDIA){
         ac = ALARMA_CAUDAL_APAGADA;
-        sigma_ac = inf;
+        sigma_ac = INF_VAL;
     }
     else if(ab != ALARMA_BAJA && ac == ALARMA_CRITICA && estadoCritico == CONFIRMANDO){
         ac = ALARMA_CRITICA;
@@ -50,7 +50,7 @@ void modulo_alarmas::dext(Event x, double t) {
     if (alarmaRecibida.tipo == ORIGEN_CAUDAL) {
         if (alarmaRecibida.caudal == ALARMA_CAUDAL_APAGADA) {
             ac = ALARMA_CAUDAL_APAGADA;
-            sigma_ac = inf;
+            sigma_ac = INF_VAL;
             estadoCritico = IDLE_CRITICO;
         } else {
             ac = alarmaRecibida.caudal;

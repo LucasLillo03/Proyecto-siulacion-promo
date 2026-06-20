@@ -11,15 +11,17 @@ va_start(parameters,t);
 //where:
 //      %Name% is the parameter name
 //	%Type% is the parameter type
-sigma = inf;
+sigma = INF_VAL;
 salida = 0;
+
+bolsaVacia = false;
 }
 double accionador_bolsa::ta(double t) {
 //This function returns a double.
     return sigma;
 }
 void accionador_bolsa::dint(double t) {
-    sigma = inf;
+    sigma = INF_VAL;
 }
 void accionador_bolsa::dext(Event x, double t) {
 //The input event is in the 'x' variable.
@@ -27,12 +29,14 @@ void accionador_bolsa::dext(Event x, double t) {
 //     'x.value' is the value (pointer to void)
 //     'x.port' is the port number
 //     'e' is the time elapsed since last transition
-    if(x.port == PUERTO_CORRECCION_CAUDAL){
+    if(x.port == PUERTO_CORRECCION_CAUDAL && !bolsaVacia){
         salida = *(RangoCaudalRecetado*)x.value;
+        sigma = 0;
     } else if(x.port == PUERTO_DETENER_BOMBA){
         salida = 0;
+        bolsaVacia = true;
+        sigma = 0;
     }
-    sigma = 0;
 }
 Event accionador_bolsa::lambda(double t) {
 //This function returns an Event:

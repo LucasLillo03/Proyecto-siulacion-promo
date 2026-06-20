@@ -17,6 +17,8 @@ class accionador_bolsa: public Simulator {
 double sigma;
 RangoCaudalRecetado salida;
 
+bool bolsaVacia;
+
 public:
 	accionador_bolsa(const char *n): Simulator(n) {};
 	void init(double, ...);

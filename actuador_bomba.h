@@ -6,6 +6,7 @@
 #include "event.h"
 #include "stdarg.h"
 #include "tipos.h"
+#include "constantes.h"
 
 
 class actuador_bomba: public Simulator { 

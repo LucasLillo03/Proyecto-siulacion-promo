@@ -6,6 +6,10 @@
 #include "event.h"
 #include "stdarg.h"
 
+#include "tipos.h"
+#include "constantes.h"
+#include "random_utils.h"
+
 
 
 class sen_flujo: public Simulator { 
@@ -19,7 +23,7 @@ double sigma;
 double periodoMuestreoFlujo; 
 double desvioCaudal; 
 
-
+bool sistemaDetenido;
 
 public:
 	sen_flujo(const char *n): Simulator(n) {};

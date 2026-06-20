@@ -30,7 +30,7 @@ double desvioMaximo;
 bool correccionPendiente; 
 bool sistemaDetenido;
 
-AlarmaCaudal salidaAlarma;
+Alarmas salidaAlarma;
 
 public:
 	desvio_caudal(const char *n): Simulator(n) {};
