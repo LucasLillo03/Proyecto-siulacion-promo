@@ -75,19 +75,19 @@ void desvio_caudal::dext(Event x, double t) {
         RangoCaudalRecetado valorEntrante = *(RangoCaudalRecetado*)x.value;
         caudalRecetado = valorEntrante;
 
+        estadoCaudal = CAUDAL_NORMAL;
+        sigma = demoraInicio; 
+        sigma_ec = INF_VAL;
+        
+        printLog("entrada %.2f: NUEVA RECETA %.2f , incio en %.2f\n", t, valorEntrante, demoraInicio);
         if (caudalRecetado == 0){ 
             sistemaDetenido = true;
-            estadoCaudal = CAUDAL_NORMAL;
             sigma = INF_VAL;
             sigma_ec = INF_VAL;
             return;
         }
 
-        estadoCaudal = CAUDAL_NORMAL;
-        sigma = demoraInicio; 
-        sigma_ec = INF_VAL;
 
-        printLog("entrada %.2f: NUEVA RECETA %.2f , incio en %.2f\n", t, valorEntrante, demoraInicio);
     }
 
 
@@ -99,7 +99,7 @@ void desvio_caudal::dext(Event x, double t) {
         if (caudalRecetado * desvioMaximo < abs(caudalRecetado - valorEntrante)){
             //si el estado es normal, se pasa a tolerancia de desvio, si ya estaba en tolerancia de desvio o desviado, se mantiene en ese estado y se reinicia el tiempo de tolerancia
             if(estadoCaudal == CAUDAL_NORMAL){
-                // printLog("entrada %.2f desvio caudal detectado. valor actual: %.2f, valor recetado: %.2f \n", t, valorEntrante, caudalRecetado);
+                printLog("entrada %.2f desvio caudal detectado. valor actual: %.2f, valor recetado: %.2f \n", t, valorEntrante, caudalRecetado);
                 estadoCaudal = CAUDAL_TOLERANCIA_DESVIO;
                 caudalActual = valorEntrante;
                 sigma = 0;
