@@ -1,5 +1,6 @@
 #include "sen_confirmacion_enfermero.h"
 #include "random_utils.h"
+#include <algorithm>
 #include <math.h>
 
 void sen_confirmacion_enfermero::init(double t,...) {
@@ -18,7 +19,7 @@ notificacionAlarma = ALARMA_CAUDAL_APAGADA;
 confirmacionEnfermero = true;
 sigma = INF_VAL;
 
- 
+confirmacionPendiente = false;
 
 }
 double sen_confirmacion_enfermero::ta(double t) {
@@ -36,22 +37,17 @@ void sen_confirmacion_enfermero::dext(Event x, double t) {
 //     'e' is the time elapsed since last transition
 
 double valorAlarma = *(AlarmaCaudal*)x.value; 
-	if (valorAlarma == ALARMA_CRITICA){
+	if (valorAlarma == ALARMA_CRITICA && !confirmacionPendiente){
 		sigma = std::abs(randomNormal(mediaConfirmacion, desvioConfirmacion));
+		confirmacionPendiente = true;
+        printLog("confirmacion generada %.2f sigma: %.2f \n", t, sigma);
 	}
-else{
-	sigma = INF_VAL; 
-}
+	sigma = std::max(0.0, sigma - e);
 }
 Event sen_confirmacion_enfermero::lambda(double t) {
-//This function returns an Event:
-//     Event(%&Value%, %NroPort%)
-//where:
-//     %&Value% points to the variable which contains the value.
-//     %NroPort% is the port number (from 0 to n-1)
-
-
-return Event(&confirmacionEnfermero, 0);
+	confirmacionPendiente = false;
+    // printLog("confirmacion ya salio %.2f \n", t);
+	return Event(&confirmacionEnfermero, 0);
 
 // PARA DEBUG
 
