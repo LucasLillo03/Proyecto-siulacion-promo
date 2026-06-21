@@ -13,8 +13,8 @@ void gen_orden_medica::init(double t,...) {
 	sigma_arr = getScilabVar("ordenInterarribo");
 	mediaCaudal = getScilabVar("mediaCaudal");
 
-	actual = 0.0;
-	sigma = sigma_arr;
+	actual = randomExponential((double)mediaCaudal);
+	sigma = 0;
 }
 
 double gen_orden_medica::ta(double t) {
