@@ -56,5 +56,5 @@ Event gen_orden_medica::lambda(double t) {
 	return Event(&actual, 0);
 }
 void gen_orden_medica::exit() {
-	executeScilabJob("simulacionActiva = 1",true);
+	executeScilabJob("simulacionActiva = 1;",true);
 }

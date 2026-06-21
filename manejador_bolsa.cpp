@@ -68,7 +68,7 @@ Event manejador_bolsa::lambda(double t) {
         printLog("Salida %.2f: BOMBA DETENIDA\n", t);
 
         bool salida = false;
-        executeScilabJob("simulacionActiva = 0",true);
+        executeScilabJob("simulacionActiva = 0;",true);
         return Event(&salida, DETENER_BOMBA_PUERTO);
     }else {
         // no deberia pasar
