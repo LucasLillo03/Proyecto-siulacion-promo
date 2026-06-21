@@ -103,7 +103,7 @@ void gestor_estados::dext(Event x, double t) {
 Event gestor_estados::seleccionarSalida(double t){
     if (!correccionPendiente){ 
         correccionPendiente = true;
-        return Event(&salidaAlarma, PUERTO_ALARMA);
+        return Event(&salida, PUERTO_ALARMA);
     }
     else{
         correccionPendiente = false;
@@ -113,6 +113,7 @@ Event gestor_estados::seleccionarSalida(double t){
 Event gestor_estados::lambda(double t) {
     if(estadoCaudal == CAUDAL_NORMAL){
         salidaAlarma.caudal = ALARMA_CAUDAL_APAGADA;
+        salida = VALOR_ALARMA_APAGADA;
         salidaCorreccion = true;
         return seleccionarSalida(t);
     }
@@ -120,11 +121,13 @@ Event gestor_estados::lambda(double t) {
         // printLog("salida %.2f: alarma media emitida\n", t);
 
         salidaAlarma.caudal = ALARMA_MEDIA;
+        salida = VALOR_ALARMA_MEDIA;
         salidaCorreccion = true;
         return seleccionarSalida(t);
     }
     else if(estadoCaudal == CAUDAL_CRITICO){
         salidaAlarma.caudal = ALARMA_CRITICA;
+        salida = VALOR_ALARMA_CRITICA;
         salidaCorreccion = false;
         return seleccionarSalida(t); 
     }

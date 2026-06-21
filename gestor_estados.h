@@ -25,6 +25,7 @@ double tiempoMedioHastaCritico;
 bool correccionPendiente; 
 
 Alarmas salidaAlarma;
+double salida;
 bool salidaCorreccion;
 
 public:

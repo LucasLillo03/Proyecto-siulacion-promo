@@ -45,20 +45,16 @@ void modulo_alarmas::dint(double t) {
     }
 }
 void modulo_alarmas::dext(Event x, double t) {
-    Alarmas alarmaRecibida = *(Alarmas*)x.value;
-
-    if (alarmaRecibida.tipo == ORIGEN_CAUDAL) {
-        if (alarmaRecibida.caudal == ALARMA_CAUDAL_APAGADA) {
+    double alarmaRecibida = *(double*)x.value;
+    if(alarmaRecibida == VALOR_ALARMA_APAGADA) {
             ac = ALARMA_CAUDAL_APAGADA;
             sigma_ac = INF_VAL;
             estadoCritico = IDLE_CRITICO;
-        } else {
-            ac = alarmaRecibida.caudal;
-            sigma_ac = 0;
-            printLog("entrada %.2f: alarma de caudal %s\n", t, (ac == ALARMA_MEDIA) ? "MEDIA" : "CRITICA");
-        }
-    }
-    else if (alarmaRecibida.tipo == ORIGEN_BOLSA && alarmaRecibida.bolsa == ALARMA_BAJA) {
+    } else if(alarmaRecibida == VALOR_ALARMA_CRITICA || alarmaRecibida == VALOR_ALARMA_MEDIA){
+        ac = alarmaRecibida == VALOR_ALARMA_CRITICA ? ALARMA_CRITICA : ALARMA_MEDIA;
+        sigma_ac = 0;
+        printLog("entrada %.2f: alarma de caudal %s\n", t, (ac == ALARMA_MEDIA) ? "MEDIA" : "CRITICA");
+    } else if(alarmaRecibida == VALOR_ALARMA_BAJA) {
         sigma_ac = (sigma_ac > e) ? sigma_ac - e : 0.0;
         sigma_ab = 0;
         ab = ALARMA_BAJA;
