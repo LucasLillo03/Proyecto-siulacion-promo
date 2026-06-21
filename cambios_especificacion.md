@@ -43,3 +43,9 @@ Accionador de la bolsa:
     El DEVS simula una compuerta AND con los puertos 0 y 2, cada vez que recibe un valor por dichos puertos actualiza el valor de sus variables internas. Cuando un valor
     entra por el puerto 1 este actualiza la salida con el valor ingresado. Asi mismo cuando cualquier valor entra por cualquier puerto, el sistema ejecuta la condicion 
     (estadoEstable && bolsaEstable), si esta resulta verdadera devuelve el valor de salida real, caso contrario devuelve 0. 
+
+Manejador de la bolsa: 
+    Se contemplo un nuevo caso en el que recibe como entrada un estado de bolsa normal y por lo tanto debe continuar la ejecucion.
+
+Sensor de fin bolsa: 
+    Se agrego una entrada para la confirmacion del enfermero. Al llegar una confirmacion y si el estado no es normal, la bomba se recarga y vuelve al estado normal.

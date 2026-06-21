@@ -359,7 +359,7 @@ Coupled
                     Description = Atomic DEVS model
                     Graphic
                         {
-                        Position = -64980 ; -17535
+                        Position = -65505 ; -17385
                         Dimension = 675 ; 720
                         Direction = Right
                         Color = 15
@@ -374,13 +374,13 @@ Coupled
                 Atomic
                     {
                     Name = sen_fin_bolsa
-                    Ports = 1 ; 1
+                    Ports = 2 ; 1
                     Path = mysources/sen_fin_bolsa.h
                     Description = Atomic DEVS model
                     Graphic
                         {
-                        Position = -67980 ; -12960
-                        Dimension = 675 ; 720
+                        Position = -63330 ; -12855
+                        Dimension = 675 ; 675
                         Direction = Right
                         Color = 15
                         Icon = None
@@ -475,7 +475,7 @@ Coupled
                     Description = Saves in a file the number of events received at each port.
                     Graphic
                         {
-                        Position = -66060 ; -12930
+                        Position = -61410 ; -12855
                         Dimension = 720 ; 675
                         Direction = Right
                         Color = 15
@@ -576,8 +576,8 @@ Coupled
                     {
                     Source = Cmp ;  6 ;  1 ; 0
                     Sink = Cmp ;  11 ;  1 ; -1
-                    PointX = -67200 ; -67200 ; -66240
-                    PointY = -12600 ; -12600 ; -12600
+                    PointX = -62550 ; -62550 ; -61590
+                    PointY = -12525 ; -12525 ; -12525
                     }
                 Line
                     {
@@ -618,22 +618,22 @@ Coupled
                     {
                     Source = Cmp ;  4 ;  1 ; 0
                     Sink = Cmp ;  6 ;  1 ; -1
-                    PointX = -68925 ; -68925 ; -68115
-                    PointY = -15975 ; -12600 ; -12600
+                    PointX = -68925 ; -68925 ; -63465
+                    PointY = -15975 ; -12675 ; -12675
                     }
                 Line
                     {
                     Source = Cmp ;  5 ;  1 ; 0
                     Sink = Cmp ;  3 ;  2 ; -1
-                    PointX = -64200 ; -64200 ; -62115
-                    PointY = -17175 ; -17175 ; -17175
+                    PointX = -64725 ; -62115 ; -62115
+                    PointY = -17025 ; -17025 ; -17175
                     }
                 Line
                     {
                     Source = Cmp ;  6 ;  1 ; 0
                     Sink = Cmp ;  3 ;  4 ; -1
-                    PointX = -67200 ; -67200 ; -62115
-                    PointY = -12600 ; -14625 ; -14625
+                    PointX = -62550 ; -62550 ; -62115
+                    PointY = -12525 ; -14625 ; -14625
                     }
                 Line
                     {
@@ -660,8 +660,8 @@ Coupled
                     {
                     Source = Cmp ;  8 ;  1 ; 0
                     Sink = Cmp ;  5 ;  1 ; -1
-                    PointX = -54375 ; -54375 ; -65250 ; -65250 ; -65115
-                    PointY = -18000 ; -20250 ; -20250 ; -17175 ; -17175
+                    PointX = -54375 ; -54375 ; -65640 ; -65640
+                    PointY = -18000 ; -20250 ; -20250 ; -17025
                     }
                 Line
                     {
@@ -683,6 +683,13 @@ Coupled
                     Sink = Cmp ;  15 ;  1 ; -1
                     PointX = -54375 ; -54150 ; -54150 ; -53340
                     PointY = -18000 ; -18000 ; -19350 ; -19350
+                    }
+                Line
+                    {
+                    Source = Cmp ;  5 ;  1 ; 0
+                    Sink = Cmp ;  6 ;  2 ; -1
+                    PointX = -64725 ; -63900 ; -63900 ; -63465
+                    PointY = -17025 ; -17025 ; -12375 ; -12375
                     }
         }
     }

@@ -16,6 +16,8 @@ va_start(parameters,t);
     estadoManejador = MANEJADOR_NORMAL;
     salidaFinBolsa.tipo = ORIGEN_BOLSA;
     salidaFinBolsa.bolsa = IDLE_ALARMA_FIN_BOLSA;
+
+    salida = true;
 }
 double manejador_bolsa::ta(double t) {
 //This function returns a double.
@@ -36,21 +38,19 @@ void manejador_bolsa::dint(double t) {
     }
 }
 void manejador_bolsa::dext(Event x, double t) {
-//The input event is in the 'x' variable.
-//where:
-//     'x.value' is the value (pointer to void)
-//     'x.port' is the port number
-//     'e' is the time elapsed since last transition
     EstadoBolsa entrada = *(EstadoBolsa*) x.value;
 
+    
+    
     if(entrada == AGOTANDOSE){
         sigma = 0;
         estadoManejador = MANEJADOR_AGOTANDOSE;
     } else if(entrada == VACIA){
         sigma = 0;
         estadoManejador = MANEJADOR_VACIA;
-    } else {
-        // no deberia pasar
+    } else if (entrada == NORMAL){
+        sigma = 0;
+        estadoManejador = MANEJADOR_NORMAL;
     }
 }
 Event manejador_bolsa::lambda(double t) {
@@ -67,11 +67,13 @@ Event manejador_bolsa::lambda(double t) {
     } else if(estadoManejador == MANEJADOR_VACIA){
         printLog("Salida %.2f: BOMBA DETENIDA\n", t);
 
-        bool salida = false;
-        executeScilabJob("simulacionActiva = 0;",true);
+        salida = false;
+        // executeScilabJob("simulacionActiva = 0;",true);
         return Event(&salida, DETENER_BOMBA_PUERTO);
-    }else {
-        // no deberia pasar
+    }else if (estadoManejador == MANEJADOR_NORMAL){
+        
+        salida = true;
+        return Event(&salida, DETENER_BOMBA_PUERTO);
     }
 
 return Event();

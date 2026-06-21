@@ -39,7 +39,6 @@ void accionador_bolsa::dext(Event x, double t) {
         // }
 
         estadoEstable = estadoEntrante; 
-
     }
     // 
     if(x.port == PUERTO_CORRECCION_CAUDAL){

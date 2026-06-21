@@ -1,4 +1,8 @@
 #include "sen_fin_bolsa.h"
+//puertos de entrada
+#define PUERTO_CAUDAL 0
+#define PUERTO_CONFIRMACION 1
+//puertos de salida
 #define FIN_BOLSA 0 
 
 void sen_fin_bolsa::init(double t,...) {
@@ -24,37 +28,38 @@ void sen_fin_bolsa::dint(double t) {
 sigma = INF_VAL;
 }
 void sen_fin_bolsa::dext(Event x, double t) {
-//The input event is in the 'x' variable.
-//where:
-//     'x.value' is the value (pointer to void)
-//     'x.port' is the port number
-//     'e' is the time elapsed since last transition
-double valorEntrada = (*(double*)x.value * e) / 3600; // se divide por 3600 ya que el caudal esta en ml/h y el tiempo en segundos
-if (contenidoRestante - valorEntrada <= margenBolsa && contenidoRestante > margenBolsa){
-    contenidoRestante = contenidoRestante - valorEntrada;
-    estado = AGOTANDOSE; 
-    printLog("%.2f estado AGOTANDOSE \n", t);
-    sigma = 0;
-}
-else if (contenidoRestante - valorEntrada <= 0 && contenidoRestante > 0){
-    contenidoRestante = 0;
-    estado = VACIA;
-    sigma = 0; 
-}
-else{
-    contenidoRestante = contenidoRestante - valorEntrada;
-    sigma = INF_VAL; 
-}
+    if (x.port == PUERTO_CAUDAL){
+        double valorEntrada = (*(double*)x.value * e) / 3600; // se divide por 3600 ya que el caudal esta en ml/h y el tiempo en segundos
+        
+        //si el nuevo contenido es inferior o igual al margen y el anterior no
+        if (contenidoRestante - valorEntrada <= margenBolsa && contenidoRestante > margenBolsa){
+            contenidoRestante = contenidoRestante - valorEntrada;
+            estado = AGOTANDOSE; 
+            printLog("%.2f estado AGOTANDOSE \n", t);
+            sigma = 0;
+        }
+        
+        else if (contenidoRestante - valorEntrada <= 0 && contenidoRestante > 0){
+            contenidoRestante = 0;
+            estado = VACIA;
+            sigma = 0; 
+        }
+        
+        else{
+            contenidoRestante = contenidoRestante - valorEntrada;
+            sigma = INF_VAL; 
+        }
+    }
+    else if (x.port == PUERTO_CONFIRMACION){
+        if(estado != NORMAL){
+            contenidoRestante = capacidadMaxima;
+            estado = NORMAL;
+            sigma = 0;
+        }
+    }
 }
 Event sen_fin_bolsa::lambda(double t) {
-//This function returns an Event:
-//     Event(%&Value%, %NroPort%)
-//where:
-//     %&Value% points to the variable which contains the value.
-//     %NroPort% is the port number (from 0 to n-1)
-
-
-return Event(&estado, FIN_BOLSA);
+    return Event(&estado, FIN_BOLSA);
 }
 void sen_fin_bolsa::exit() {
     printLog("contenidoFinal = %f \n", contenidoRestante);
