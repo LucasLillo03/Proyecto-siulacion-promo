@@ -16,7 +16,7 @@ void sen_flujo::init(double t,...) {
     desvioCaudal = va_arg(parameters, double);
 
     caudalMedido = 0.0; 
-    sigma = periodoMuestreoFlujo;
+    sigma = INF_VAL;
 
     sistemaDetenido = true;
 }
@@ -28,6 +28,8 @@ return sigma;
 void sen_flujo::dint(double t) {
     caudalMedido = caudalMedido <= 0 ? 0 : std::fabs(randomNormal(caudalMedido, desvioCaudal)); //TODO por alguna razon siguen saliendo valores negativos
     sigma = sistemaDetenido ? INF_VAL : periodoMuestreoFlujo;   
+    // sigma = periodoMuestreoFlujo;   
+
 }
 void sen_flujo::dext(Event x, double t) {
     double valorCaudal = *(double*)x.value; 
@@ -40,6 +42,8 @@ void sen_flujo::dext(Event x, double t) {
         sistemaDetenido = true; 
     }
     
+    // printLog("sen_flujo: nueva correccion %.2f\n", valorCaudal);
+
     caudalMedido = std::fabs(randomNormal(valorCaudal, desvioCaudal)); 
     
     sigma = std::max(0.0, sigma - e);  
