@@ -3,7 +3,7 @@ Root-Coordinator
   Simulator
    {
     Path = mysources/gen_orden_medica.h
-    Parameters = 2.000000e-01,1.800000e+03,4.000000e+01
+    Parameters = 2.000000e-01,1.800000e+02,4.000000e+01
    }
     Coordinator
      {
@@ -14,8 +14,8 @@ Root-Coordinator
        }
       Simulator
        {
-        Path = mysources/desvio_caudal.h
-        Parameters = 3.000000e+00,5.000000e+00,1.000000e+01,1.000000e-01
+        Path = mysources/desvio_caudal_v2.h
+        Parameters = 3.000000e+00,1.000000e-01
        }
       Simulator
        {
@@ -27,24 +27,31 @@ Root-Coordinator
         Path = sinks/ev_count2.h
         Parameters = "./../atomics/mysources/outputs/alarma_baja_manejador.txt",1.000000e+00
        }
+      Simulator
+       {
+        Path = mysources/gestor_estados.h
+        Parameters = 5.000000e+00,1.000000e+01
+       }
       EIC
        {
         (0,3);(0,0)
         (0,0);(1,0)
-        (0,1);(1,1)
-        (0,2);(1,2)
+        (0,2);(1,1)
+        (0,1);(4,0)
        }
       EOC
        {
         (2,0);(0,1)
-        (1,0);(0,0)
         (0,0);(0,0)
+        (4,0);(0,0)
        }
       IC
        {
-        (0,1);(2,1)
-        (1,1);(2,0)
         (0,0);(3,0)
+        (0,1);(2,2)
+        (1,1);(2,1)
+        (1,0);(4,1)
+        (4,1);(2,0)
        }
      }
   Simulator

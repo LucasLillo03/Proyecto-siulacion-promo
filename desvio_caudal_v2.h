@@ -26,6 +26,7 @@ double desvioMaximo;
 bool correccionPendiente; 
 
 bool salidaDesvio;
+bool nuevaOrden;
 double salidaCorreccion;
 
 public:

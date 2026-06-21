@@ -25,7 +25,7 @@ double tiempoMedioHastaCritico;
 bool correccionPendiente; 
 
 Alarmas salidaAlarma;
-bool salidaCorrecion;
+bool salidaCorreccion;
 
 public:
 	gestor_estados(const char *n): Simulator(n) {};

@@ -25,7 +25,7 @@ void gestor_estados::init(double t,...) {
     correccionPendiente = false;
     salidaAlarma.tipo = ORIGEN_CAUDAL;
     salidaAlarma.caudal = ALARMA_CAUDAL_APAGADA;
-    salidaCorrecion = true; // true = la bomba puede continuar, false = la bomba debe ser detenida 
+    salidaCorreccion = true; // true = la bomba puede continuar, false = la bomba debe ser detenida 
 }
 
 double gestor_estados::ta(double t) {
@@ -38,7 +38,10 @@ void gestor_estados::dint(double t) {
     }
     //si entra con caudal desviado significa que agoto su tiempo de tolerancia
     else if (estadoCaudal == CAUDAL_DESVIADO){
-        estadoCaudal == CAUDAL_CRITICO;
+
+        // printLog("tolerancia terminada\n");
+
+        estadoCaudal = CAUDAL_CRITICO;
         sigma = tiempoMedioHastaCritico; 
     }
     else{
@@ -64,16 +67,28 @@ void gestor_estados::dext(Event x, double t) {
     if (x.port == PUERTO_DESVIO){
         bool caudalDesviado = *(bool*)x.value;
 
-        if(caudalDesviado){ 
+        // printLog("entrada %.2f: desvio entrante %d \n", t, caudalDesviado);
+
+
+        if(caudalDesviado || estadoCaudal == CAUDAL_CRITICO){ 
             if (estadoCaudal == CAUDAL_NORMAL){ 
-                estadoCaudal = CAUDAL_DESVIADO
+                // printLog("entrada %.2f: caudal desviado \n", t);
+
+                // printLog("caudal desviandose\n");
+                estadoCaudal = CAUDAL_DESVIADO;
                 sigma = tiempoMaximoDesvio;
             }
             else{
+                // printLog("caudal no corregido\n");
+
                 sigma = std::max(0.0, sigma - e);
             }
         }
         else{
+            // printLog("entrada %.2f: caudal corregido\n",t);
+            if (estadoCaudal == CAUDAL_CRITICO) {printLog("caudal corregido\n");}
+
+
             estadoCaudal = CAUDAL_NORMAL;
             sigma = 0;
         }
@@ -93,17 +108,19 @@ Event gestor_estados::seleccionarSalida(double t){
 Event gestor_estados::lambda(double t) {
     if(estadoCaudal == CAUDAL_NORMAL){
         salidaAlarma.caudal = ALARMA_CAUDAL_APAGADA;
-        salidaCorrecion = true;
+        salidaCorreccion = true;
         return seleccionarSalida(t);
     }
     else if (estadoCaudal == CAUDAL_DESVIADO){
+        // printLog("salida %.2f: alarma media emitida\n", t);
+
         salidaAlarma.caudal = ALARMA_MEDIA;
-        salidaCorrecion = true;
+        salidaCorreccion = true;
         return seleccionarSalida(t);
     }
     else if(estadoCaudal == CAUDAL_CRITICO){
-        salidaAlarma = ALARMA_CRITICA;
-        salidaCorrecion = false;
+        salidaAlarma.caudal = ALARMA_CRITICA;
+        salidaCorreccion = false;
         return seleccionarSalida(t); 
     }
 }

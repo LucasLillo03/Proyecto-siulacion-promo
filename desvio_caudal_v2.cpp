@@ -25,6 +25,7 @@ void desvio_caudal_v2::init(double t,...) {
 
     correccionPendiente = false;
     salidaDesvio = false;
+    nuevaOrden = false;
     salidaCorreccion = caudalRecetado;
 }
 double desvio_caudal_v2::ta(double t) {
@@ -44,42 +45,68 @@ void desvio_caudal_v2::dext(Event x, double t) {
         double demoraInicio = randomUniformConMaximo(tiempoMaximoInicio);
 
         RangoCaudalRecetado valorEntrante = *(RangoCaudalRecetado*)x.value;
+
         caudalRecetado = valorEntrante;
+        nuevaOrden = true;
+        sigma = 0;
+        
+        salidaDesvio = (caudalRecetado == 0.0) ? false : true;
+
+        printLog("entrada %.2f: nueva orden %.2f \n", t, valorEntrante);
     }
 
-
+    
     //entrada sensor de flujo
-    else if (x.port == PUERTO_SENSOR_FLUJO && !sistemaDetenido){
+    else if (x.port == PUERTO_SENSOR_FLUJO){
+
+        if (caudalRecetado == 0) {
+            sigma = INF_VAL;
+            return;
+        }
         double valorEntrante = *(double*)x.value;
+        // printLog("entrada %.2f: nuevo flujo %.2f \n", t, valorEntrante);
 
         if (caudalRecetado * desvioMaximo < abs(caudalRecetado - valorEntrante)){
+            // printLog("flujo desviado \n", t, valorEntrante);
+
             salidaDesvio = true;
             sigma = 0; 
         }
-        else (
+        else {
+            // printLog("flujo correcto \n", t, valorEntrante);
             salidaDesvio = false; 
             sigma = 0;
-        )
+        }
     }
 }
 
 Event desvio_caudal_v2::seleccionarSalida(double t){
     if (!correccionPendiente){ 
         correccionPendiente = true;
-        return Event(&salidaAlarma, PUERTO_DESVIO);
+        // printLog("salida %.2f: desvio %d \n", t, salidaDesvio);
+        return Event(&salidaDesvio, PUERTO_DESVIO);
     }
     else{
         correccionPendiente = false;
+        // printLog("salida %.2f: correccion %.2f \n", t, salidaCorreccion);
         return Event(&salidaCorreccion, PUERTO_CORRECCION);
     }
 }
 Event desvio_caudal_v2::lambda(double t) {
     if (salidaDesvio){
         salidaCorreccion = caudalRecetado; 
+        
+        return seleccionarSalida(t);
+    }
+    else if (nuevaOrden){
+        salidaCorreccion = caudalRecetado; 
+
+        if (correccionPendiente) {nuevaOrden = false;}
+
         return seleccionarSalida(t);
     }
     else{
-        return Event(&salidaAlarma, PUERTO_DESVIO);
+        return Event(&salidaDesvio, PUERTO_DESVIO);
         //no hay que corregir caudal
     }
 }
