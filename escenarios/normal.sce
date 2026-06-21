@@ -1,3 +1,4 @@
+semilla = 3;
 latenciaActuador = 0.5;
 mediaLatenciaActuador = 0.1;
 PAjusteCaudal = 0.95;
