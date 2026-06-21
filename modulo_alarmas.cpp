@@ -66,10 +66,15 @@ void modulo_alarmas::dext(Event x, double t) {
 }
 Event modulo_alarmas::lambda(double t) {
     if (ab == ALARMA_BAJA){
-        return Event(&ab, PUERTO_ALARMA_BAJA);
+        salida = VALOR_ALARMA_BAJA;
+        return Event(&salida, PUERTO_ALARMA_BAJA);
     }
     else{
-        return Event(&ac, PUERTO_NOTIFICACION_ALARMA);
+        if(ac == ALARMA_CAUDAL_APAGADA) salida = VALOR_ALARMA_APAGADA;
+        else if(ac == ALARMA_MEDIA) salida = VALOR_ALARMA_MEDIA;
+        else salida = VALOR_ALARMA_CRITICA;
+
+        return Event(&salida, PUERTO_NOTIFICACION_ALARMA);
     }
 }
 void modulo_alarmas::exit() {

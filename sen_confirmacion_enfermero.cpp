@@ -36,8 +36,8 @@ void sen_confirmacion_enfermero::dext(Event x, double t) {
 //     'x.port' is the port number
 //     'e' is the time elapsed since last transition
 
-double valorAlarma = *(AlarmaCaudal*)x.value; 
-	if (valorAlarma == ALARMA_CRITICA && !confirmacionPendiente){
+double valorAlarma = *(double*)x.value; 
+	if (valorAlarma == VALOR_ALARMA_CRITICA && !confirmacionPendiente){
 		sigma = std::abs(randomNormal(mediaConfirmacion, desvioConfirmacion));
 		confirmacionPendiente = true;
         // printLog("confirmacion generada %.2f sigma: %.2f \n", t, sigma);
