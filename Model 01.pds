@@ -2,6 +2,11 @@ Root-Coordinator
  {
   Simulator
    {
+    Path = mysources/set_semilla.h
+    Parameters = 
+   }
+  Simulator
+   {
     Path = mysources/gen_orden_medica.h
     Parameters = 2.000000e-01,1.800000e+02,4.000000e+01
    }
@@ -15,7 +20,7 @@ Root-Coordinator
       Simulator
        {
         Path = mysources/desvio_caudal_v2.h
-        Parameters = 3.000000e+00,1.000000e-01
+        Parameters = 3.000000e+00,5.000000e-02
        }
       Simulator
        {
@@ -57,7 +62,7 @@ Root-Coordinator
   Simulator
    {
     Path = mysources/sen_flujo.h
-    Parameters = 1.000000e+00,5.000000e+00
+    Parameters = 1.000000e+00,5.000000e-01
    }
   Simulator
    {
@@ -114,16 +119,6 @@ Root-Coordinator
     Path = sinks\to_disk.h
     Parameters = "./../atomics/mysources/outputs/alarmas.csv"
    }
-  Simulator
-   {
-    Path = mysources/set_semilla.h
-    Parameters = 
-   }
-  Simulator
-   {
-    Path = sinks/ev_count2.h
-    Parameters = "./../atomics/mysources/outputs/confirmaciones.txt",1.000000e+00
-   }
   EIC
    {
    }
@@ -132,23 +127,22 @@ Root-Coordinator
    }
   IC
    {
-    (0,0);(7,0)
-    (4,0);(9,0)
-    (6,0);(10,0)
-    (6,1);(10,1)
-    (0,0);(1,0)
-    (2,0);(1,2)
-    (2,0);(8,0)
-    (2,0);(4,0)
-    (3,0);(1,1)
-    (4,0);(1,3)
-    (1,1);(5,0)
-    (5,0);(2,0)
-    (1,0);(6,0)
+    (1,0);(8,0)
+    (5,0);(10,0)
+    (7,0);(11,0)
+    (7,1);(11,1)
+    (1,0);(2,0)
+    (3,0);(2,2)
+    (3,0);(9,0)
+    (3,0);(5,0)
+    (4,0);(2,1)
+    (5,0);(2,3)
+    (2,1);(6,0)
     (6,0);(3,0)
-    (5,0);(11,0)
-    (1,0);(12,0)
-    (6,0);(13,0)
-    (3,0);(15,0)
+    (2,0);(7,0)
+    (7,0);(4,0)
+    (6,0);(12,0)
+    (2,0);(13,0)
+    (7,0);(14,0)
    }
  }

@@ -184,7 +184,7 @@ Coupled
                     Parameters
                         {
                         tiempoMaximoInicio = Val; 3 ; 
-                        desvioMaximo = Val; 0.1 ; 
+                        desvioMaximo = Val; 0.05 ; 
                         }
                     }
                 Atomic
@@ -348,7 +348,7 @@ Coupled
                     Parameters
                         {
                         periodoMuestreoFlujo = Val; 1 ; 
-                        desvioCaudal = Val; 5 ; 
+                        desvioCaudal = Val; 0.5 ; 
                         }
                     }
                 Atomic
