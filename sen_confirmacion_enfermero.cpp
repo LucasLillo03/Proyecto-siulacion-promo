@@ -16,7 +16,7 @@ mediaConfirmacion = va_arg(parameters, double);
 desvioConfirmacion = va_arg(parameters, double);
 
 notificacionAlarma = ALARMA_CAUDAL_APAGADA; 
-confirmacionEnfermero = true;
+confirmacionEnfermero = 100;
 sigma = INF_VAL;
 
 confirmacionPendiente = false;

@@ -20,7 +20,7 @@ AlarmaCaudal notificacionAlarma;
 
 double sigma;  	
 
-bool confirmacionEnfermero; 
+double confirmacionEnfermero; 
 
 double desvioConfirmacion;
 double mediaConfirmacion;

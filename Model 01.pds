@@ -20,7 +20,7 @@ Root-Coordinator
       Simulator
        {
         Path = mysources/desvio_caudal_v2.h
-        Parameters = 3.000000e+00,5.000000e-02
+        Parameters = 3.000000e+00,2.000000e-01
        }
       Simulator
        {
@@ -87,7 +87,7 @@ Root-Coordinator
   Simulator
    {
     Path = sinks\to_disk.h
-    Parameters = "./../atomics/mysources/outputs/ordenes.csv"
+    Parameters = "./../atomics/mysources/outputs/ordenes.line.csv"
    }
   Simulator
    {
@@ -119,6 +119,11 @@ Root-Coordinator
     Path = sinks\to_disk.h
     Parameters = "./../atomics/mysources/outputs/alarmas.csv"
    }
+  Simulator
+   {
+    Path = sinks\to_disk.h
+    Parameters = "./../atomics/mysources/outputs/confirmaciones.csv"
+   }
   EIC
    {
    }
@@ -144,5 +149,6 @@ Root-Coordinator
     (6,0);(12,0)
     (2,0);(13,0)
     (7,0);(14,0)
+    (4,0);(15,0)
    }
  }
