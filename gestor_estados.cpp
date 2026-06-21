@@ -50,6 +50,11 @@ void gestor_estados::dint(double t) {
 }
 
 void gestor_estados::dext(Event x, double t) {
+    bool simulacionActiva = getScilabVar("simulacionActiva");
+	
+	if (!simulacionActiva) {
+		return;
+	}
 
     //entrada de confirmacion del enfermero
     if (x.port == PUERTO_CONFIRMACION_ENFERMERO){

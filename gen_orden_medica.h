@@ -7,6 +7,7 @@
 #include "stdarg.h"
 
 #include "tipos.h"
+#include "constantes.h"
 #include "cmath"
 
 

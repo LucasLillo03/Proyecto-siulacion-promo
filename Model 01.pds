@@ -67,7 +67,7 @@ Root-Coordinator
   Simulator
    {
     Path = mysources/sen_fin_bolsa.h
-    Parameters = 2.000000e+01,5.000000e+01
+    Parameters = 5.000000e+00,5.000000e+01
    }
   Simulator
    {

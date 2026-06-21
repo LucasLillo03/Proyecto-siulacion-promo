@@ -26,6 +26,13 @@ double sen_flujo::ta(double t) {
 return sigma; 	
 }
 void sen_flujo::dint(double t) {
+    bool simulacionActiva = getScilabVar("simulacionActiva");
+
+	if (!simulacionActiva) {
+		sigma = INF_VAL;
+		return;
+	}
+    
     caudalMedido = caudalMedido <= 0 ? 0 : std::fabs(randomNormal(caudalMedido, desvioCaudal)); //TODO por alguna razon siguen saliendo valores negativos
     sigma = sistemaDetenido ? INF_VAL : periodoMuestreoFlujo;   
     // sigma = periodoMuestreoFlujo;   

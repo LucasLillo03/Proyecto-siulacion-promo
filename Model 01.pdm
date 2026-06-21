@@ -369,7 +369,7 @@ Coupled
                         }
                     Parameters
                         {
-                        margenBolsa = Val; 20 ; 
+                        margenBolsa = Val; 5 ; 
                         capacidadMaxima = Val; 50 ; 
                         }
                     }
