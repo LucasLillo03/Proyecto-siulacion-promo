@@ -24,37 +24,26 @@ void sen_fin_bolsa::dint(double t) {
 sigma = INF_VAL;
 }
 void sen_fin_bolsa::dext(Event x, double t) {
-//The input event is in the 'x' variable.
-//where:
-//     'x.value' is the value (pointer to void)
-//     'x.port' is the port number
-//     'e' is the time elapsed since last transition
-double valorEntrada = (*(double*)x.value * e) / 3600; // se divide por 3600 ya que el caudal esta en ml/h y el tiempo en segundos
-if (contenidoRestante - valorEntrada <= margenBolsa && contenidoRestante > margenBolsa){
-    contenidoRestante = contenidoRestante - valorEntrada;
-    estado = AGOTANDOSE; 
-    printLog("%.2f estado AGOTANDOSE \n", t);
-    sigma = 0;
-}
-else if (contenidoRestante - valorEntrada <= 0 && contenidoRestante > 0){
-    contenidoRestante = 0;
-    estado = VACIA;
-    sigma = 0; 
-}
-else{
-    contenidoRestante = contenidoRestante - valorEntrada;
-    sigma = INF_VAL; 
-}
+    double valorEntrada = (*(double*)x.value * e) / 3600; // se divide por 3600 ya que el caudal esta en ml/h y el tiempo en segundos
+
+    if (contenidoRestante - valorEntrada <= margenBolsa && contenidoRestante > margenBolsa){
+        contenidoRestante = contenidoRestante - valorEntrada;
+        estado = AGOTANDOSE; 
+        printLog("%.2f estado AGOTANDOSE \n", t);
+        sigma = 0;
+    }
+    else if (contenidoRestante - valorEntrada <= 0 && contenidoRestante > 0){
+        contenidoRestante = 0;
+        estado = VACIA;
+        sigma = 0; 
+    }
+    else{
+        contenidoRestante = contenidoRestante - valorEntrada;
+        sigma = INF_VAL; 
+    }
 }
 Event sen_fin_bolsa::lambda(double t) {
-//This function returns an Event:
-//     Event(%&Value%, %NroPort%)
-//where:
-//     %&Value% points to the variable which contains the value.
-//     %NroPort% is the port number (from 0 to n-1)
-
-
-return Event(&estado, FIN_BOLSA);
+    return Event(&estado, FIN_BOLSA);
 }
 void sen_fin_bolsa::exit() {
     printLog("contenidoFinal = %f \n", contenidoRestante);

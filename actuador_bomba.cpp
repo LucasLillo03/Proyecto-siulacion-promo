@@ -8,18 +8,15 @@
 #define CAUDAL_ACTUAL_PUERTO 0 
 
 void actuador_bomba::init(double t,...) {
-//The 'parameters' variable contains the parameters transferred from the editor.
-va_list parameters;
-va_start(parameters,t);
-//To get a parameter: %Name% = va_arg(parameters,%Type%)
-//where:
-//      %Name% is the parameter name
-//	%Type% is the parameter type
-sigma = 0;
-ultimaMedicion = 0;
-latenciaMaxima = getScilabVar("latenciaActuador");
-mediaLatencia = getScilabVar("mediaLatenciaActuador");
-PAjusteCaudal = getScilabVar("PAjusteCaudal");
+    //The 'parameters' variable contains the parameters transferred from the editor.
+    va_list parameters;
+    va_start(parameters,t);
+
+    sigma = 0;
+    ultimaMedicion = 0;
+    latenciaMaxima = getScilabVar("latenciaActuador");
+    mediaLatencia = getScilabVar("mediaLatenciaActuador");
+    PAjusteCaudal = getScilabVar("PAjusteCaudal");
 }
 double actuador_bomba::ta(double t) {
 //This function returns a double.
@@ -69,14 +66,8 @@ void actuador_bomba::dext(Event x, double t) {
     }
 }
 Event actuador_bomba::lambda(double t) {
-//This function returns an Event:
-//     Event(%&Value%, %NroPort%)
-//where:
-//     %&Value% points to the variable which contains the value.
-//     %NroPort% is the port number (from 0 to n-1)
-
-// printLog("salida %.2f: ajuste de caudal realizado. valor actual: %.2f \n", t, ultimaMedicion);
-return Event(&ultimaMedicion, CAUDAL_ACTUAL_PUERTO);
+    // printLog("salida %.2f: ajuste de caudal realizado. valor actual: %.2f \n", t, ultimaMedicion);
+    return Event(&ultimaMedicion, CAUDAL_ACTUAL_PUERTO);
 }
 void actuador_bomba::exit() {
 //Code executed at the end of the simulation.

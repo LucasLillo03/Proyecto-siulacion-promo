@@ -46,6 +46,7 @@ void modulo_alarmas::dint(double t) {
 }
 void modulo_alarmas::dext(Event x, double t) {
     double alarmaRecibida = *(double*)x.value;
+    
     if(alarmaRecibida == VALOR_ALARMA_APAGADA) {
             ac = ALARMA_CAUDAL_APAGADA;
             sigma_ac = INF_VAL;

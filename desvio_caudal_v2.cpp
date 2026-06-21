@@ -14,7 +14,7 @@
 void desvio_caudal_v2::init(double t,...) {
     //The 'parameters' variable contains the parameters transferred from the editor.
     va_list parameters;
-    va_start(parameters,t);
+    va_start(parameters, t);
    
     tiempoMaximoInicio = getScilabVar("tiempoMaximoInicio");
     desvioMaximo = getScilabVar("desvioMaximo");
@@ -28,9 +28,11 @@ void desvio_caudal_v2::init(double t,...) {
     nuevaOrden = false;
     salidaCorreccion = caudalRecetado;
 }
+
 double desvio_caudal_v2::ta(double t) {
     return sigma; 
 }
+
 void desvio_caudal_v2::dint(double t) {
     if(correccionPendiente){ 
         sigma = 0;  
@@ -48,7 +50,7 @@ void desvio_caudal_v2::dext(Event x, double t) {
 
         caudalRecetado = valorEntrante;
         nuevaOrden = true;
-        sigma = 0;
+        sigma = demoraInicio;
         
         salidaDesvio = (caudalRecetado == 0.0) ? false : true;
 
