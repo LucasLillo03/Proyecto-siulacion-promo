@@ -24,3 +24,13 @@ Desvio caudal:
     Se protegio sigma y sigma_ec con std::max(0.0, ...) para evitar valores negativos.
     La confirmacion del enfermero ahora verifica sistemaDetenido en lugar de estadoCaudal == CAUDAL_CRITICO.
     Se agrego un delay en ta() para evitar el throw cuando sigma_ec == sigma.
+
+    REFACTORIZACION DEL DESVIO CAUDAL: 
+    se separo el DEVS de desvio caudal en dos componentes:
+        - El primero del mismo nombre desvio_Caudal_v2 se encarga de decidir si el caudal esta desviado emitiendo dos tipos de salidas: salidaDesvio y salidaCorreccion.
+            La primera salida es booleana y con cada lectura nueva devuelve true si se detecto un desvio o false en caso contrario.
+            La segunda salida devuelve el caudal recetado en caso de haber un desvio, este posteriormente se utilizara para corregir dicho desvio. 
+        - El segundo DEVS, gestor_estados, es el encargado de determinar en que estado se encuentra el sistema, ya sea normal, desviado o critico. Este consta de dos salidas: 
+            La primera dirigira alarmas al modulo de alarmas en casos concretos.
+            La segunda se encarga de determinar si hay que detener o no la bomba (en caso de estar en estado critico) esta devuelve un booleano al accionador de la bolsa,
+            siendo true si la bomba puede continuar y false en caso contrario. 
