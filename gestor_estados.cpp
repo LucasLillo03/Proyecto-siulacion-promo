@@ -26,8 +26,8 @@ void gestor_estados::init(double t,...) {
     va_list parameters;
     va_start(parameters,t);
 
-    tiempoMaximoDesvio = va_arg(parameters, double);
-    tiempoMedioHastaCritico = va_arg(parameters, double);
+    tiempoMaximoDesvio = getScilabVar("tiempoMaximoDesvio");
+    tiempoMedioHastaCritico = getScilabVar("tiempoMedioHastaCritico");
 
     tiempos.clear();
     estados.clear();

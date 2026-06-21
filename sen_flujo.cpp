@@ -12,8 +12,8 @@ void sen_flujo::init(double t,...) {
     //where:
     //      %Name% is the parameter name
     //	%Type% is the parameter type
-    periodoMuestreoFlujo = va_arg(parameters, double);
-    desvioCaudal = va_arg(parameters, double);
+    periodoMuestreoFlujo = getScilabVar("periodoMuestreoFlujo");
+    desvioCaudal = getScilabVar("desvioSensorFlujo");
 
     caudalMedido = 0.0; 
     sigma = INF_VAL;

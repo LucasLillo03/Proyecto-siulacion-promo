@@ -9,8 +9,8 @@ va_start(parameters,t);
 //where:
 //      %Name% is the parameter name
 //	%Type% is the parameter type
-margenBolsa = va_arg(parameters, double);
-capacidadMaxima = va_arg(parameters, double);
+margenBolsa = getScilabVar("margenBolsa");
+capacidadMaxima = getScilabVar("capacidadMaximaBolsa");
 
 contenidoRestante = capacidadMaxima;
 estado = NORMAL;
