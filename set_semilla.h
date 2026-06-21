@@ -5,14 +5,14 @@
 #include "simulator.h"
 #include "event.h"
 #include "stdarg.h"
-
+#include "constantes.h"
 
 
 class set_semilla: public Simulator { 
 // Declare the state,
 // output variables
 // and parameters
-
+double semilla;
 public:
 	set_semilla(const char *n): Simulator(n) {};
 	void init(double, ...);

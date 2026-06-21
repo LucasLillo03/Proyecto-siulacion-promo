@@ -1,5 +1,4 @@
 #include "set_semilla.h"
-#include "constantes.h"
 void set_semilla::init(double t,...) {
 //The 'parameters' variable contains the parameters transferred from the editor.
 va_list parameters;
@@ -9,11 +8,13 @@ va_start(parameters,t);
 //      %Name% is the parameter name
 //	%Type% is the parameter type
 
-    double semilla = getScilabVar("semilla");
-    srand(semilla);
+semilla = getScilabVar("semilla");
+
+srand(semilla);
 }
 double set_semilla::ta(double t) {
-    return INF_VAL;
+//This function returns a double.
+return INF_VAL;
 }
 void set_semilla::dint(double t) {
 
