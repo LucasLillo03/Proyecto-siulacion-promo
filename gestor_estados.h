@@ -10,6 +10,10 @@
 #include "constantes.h"
 #include "random_utils.h"
 
+#include <vector>
+#include <string>
+#include <cstdio>
+
 
 class gestor_estados: public Simulator { 
 // Declare the state,
@@ -25,8 +29,13 @@ double tiempoMedioHastaCritico;
 bool correccionPendiente; 
 
 Alarmas salidaAlarma;
-double salida;
-bool salidaCorreccion;
+	double salida;
+	bool salidaCorreccion;
+
+	std::vector<double> tiempos;
+	std::vector<std::string> estados;
+
+	void registrarEstado(double t);
 
 public:
 	gestor_estados(const char *n): Simulator(n) {};

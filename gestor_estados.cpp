@@ -3,6 +3,16 @@
 #include <math.h>
 #include "random_utils.h"
 
+void gestor_estados::registrarEstado(double t) {
+    tiempos.push_back(t);
+    switch(estadoCaudal) {
+        case CAUDAL_NORMAL:   estados.push_back("normal");   break;
+        case CAUDAL_DESVIADO: estados.push_back("desviado"); break;
+        case CAUDAL_CRITICO:  estados.push_back("critico");  break;
+        default:              estados.push_back("desconocido"); break;
+    }
+}
+
 //inputs ports
 #define PUERTO_CONFIRMACION_ENFERMERO 0 //bool
 #define PUERTO_DESVIO 1 //RangoCaudalRecetado
@@ -19,7 +29,11 @@ void gestor_estados::init(double t,...) {
     tiempoMaximoDesvio = va_arg(parameters, double);
     tiempoMedioHastaCritico = va_arg(parameters, double);
 
+    tiempos.clear();
+    estados.clear();
+
     estadoCaudal = CAUDAL_NORMAL;
+    registrarEstado(t);
     sigma = INF_VAL; 
 
     correccionPendiente = false;
@@ -42,6 +56,7 @@ void gestor_estados::dint(double t) {
         // printLog("tolerancia terminada\n");
 
         estadoCaudal = CAUDAL_CRITICO;
+        registrarEstado(t);
         sigma = tiempoMedioHastaCritico; 
     }
     else{
@@ -61,6 +76,7 @@ void gestor_estados::dext(Event x, double t) {
         if (estadoCaudal == CAUDAL_CRITICO){
             printLog("entrada %.2f: confirmacion del enfermero \n", t);
             estadoCaudal = CAUDAL_NORMAL;
+            registrarEstado(t);
             sigma = 0; 
         }
         else{
@@ -81,6 +97,7 @@ void gestor_estados::dext(Event x, double t) {
 
                 // printLog("caudal desviandose\n");
                 estadoCaudal = CAUDAL_DESVIADO;
+                registrarEstado(t);
                 sigma = tiempoMaximoDesvio;
             }
             else{
@@ -95,6 +112,7 @@ void gestor_estados::dext(Event x, double t) {
 
 
             estadoCaudal = CAUDAL_NORMAL;
+            registrarEstado(t);
             sigma = 0;
         }
     }
@@ -133,6 +151,15 @@ Event gestor_estados::lambda(double t) {
     }
 }
 void gestor_estados::exit() {
-//Code executed at the end of the simulation.
-
+    FILE* fp = fopen("./../atomics/mysources/outputs/estados.csv", "w");
+    if (fp == NULL) {
+        printLog("gestor_estados: no se pudo abrir outputs/estados.csv\n");
+        return;
+    }
+    fprintf(fp, "tiempo, estado\n");
+    for (size_t i = 0; i < tiempos.size(); i++) {
+        fprintf(fp, "%.6f, %s\n", tiempos[i], estados[i].c_str());
+    }
+    fclose(fp);
+    printLog("gestor_estados: %zu estados guardados en outputs/estados.csv\n", tiempos.size());
 }
