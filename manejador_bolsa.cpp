@@ -67,7 +67,7 @@ Event manejador_bolsa::lambda(double t) {
     } else if(estadoManejador == MANEJADOR_VACIA){
         printLog("Salida %.2f: BOMBA DETENIDA\n", t);
 
-        double salida = 0;
+        bool salida = false;
         return Event(&salida, DETENER_BOMBA_PUERTO);
     }else {
         // no deberia pasar

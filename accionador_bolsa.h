@@ -16,8 +16,10 @@ class accionador_bolsa: public Simulator {
 
 double sigma;
 RangoCaudalRecetado salida;
+RangoCaudalRecetado ultimaSalida;
 
-bool bolsaVacia;
+bool bolsaEstable;
+bool estadoEstable;
 
 public:
 	accionador_bolsa(const char *n): Simulator(n) {};

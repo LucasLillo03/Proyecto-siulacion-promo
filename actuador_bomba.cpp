@@ -29,14 +29,14 @@ void actuador_bomba::dint(double t) {
 sigma = INF_VAL;
 }
 void actuador_bomba::dext(Event x, double t) {
-//The input event is in the 'x' variable.
-//where:
-//     'x.value' is the value (pointer to void)
-//     'x.port' is the port number
-//     'e' is the time elapsed since last transition
     double generado = randomUniform();
     double caudalActual = *(double *) x.value;
+    // printLog("entrada %.2f: actuador_bomba %.2f \n", t, caudalActual);
+
+    // si el valor entrante es positivo y la probabilidad de correccion es verdadera
     if(caudalActual > 0 && generado <= PAjusteCaudal){
+        
+        
         ultimaMedicion = caudalActual;
         // generar latencia aleatoria truncada entre 0 y latenciaMaxima
         double proxAjuste;
@@ -45,18 +45,26 @@ void actuador_bomba::dext(Event x, double t) {
         } while(proxAjuste > latenciaMaxima);
         
         sigma = proxAjuste;
-    } else if(caudalActual > 0 && generado > PAjusteCaudal){
+    } 
+
+    else if(caudalActual > 0 && generado > PAjusteCaudal){
         // double proxAjuste;
         // do{
         //     proxAjuste = randomExponential(mediaLatencia);
         // } while(proxAjuste > latenciaMaxima);
         
         // sigma = proxAjuste; // cambio de especificacion
+        // printLog("no corrigio \n");
+
         sigma = latenciaMaxima; // simula que el actuador intenta corregir hasta el tiempo maximo de latencia
-    } else if(caudalActual == 0) {
+    } 
+
+    else if(caudalActual == 0) {
         ultimaMedicion = 0;
         sigma = 0;
-    } else {
+    } 
+
+    else {
         sigma = sigma - e;
     }
 }
