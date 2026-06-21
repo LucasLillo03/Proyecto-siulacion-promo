@@ -8,7 +8,7 @@ Root-Coordinator
   Simulator
    {
     Path = mysources/gen_orden_medica.h
-    Parameters = 2.000000e-01,1.800000e+02,4.000000e+01
+    Parameters = 
    }
     Coordinator
      {
@@ -20,7 +20,7 @@ Root-Coordinator
       Simulator
        {
         Path = mysources/desvio_caudal_v2.h
-        Parameters = 3.000000e+00,5.000000e-02
+        Parameters = 
        }
       Simulator
        {
@@ -35,7 +35,7 @@ Root-Coordinator
       Simulator
        {
         Path = mysources/gestor_estados.h
-        Parameters = 5.000000e+00,1.000000e+01
+        Parameters = 
        }
       EIC
        {
@@ -62,17 +62,17 @@ Root-Coordinator
   Simulator
    {
     Path = mysources/sen_flujo.h
-    Parameters = 1.000000e+00,5.000000e-01
+    Parameters = 
    }
   Simulator
    {
     Path = mysources/sen_confirmacion_enfermero.h
-    Parameters = 2.000000e+01,1.000000e+01
+    Parameters = 
    }
   Simulator
    {
     Path = mysources/sen_fin_bolsa.h
-    Parameters = 5.000000e+00,5.000000e+01
+    Parameters = 
    }
   Simulator
    {
@@ -82,7 +82,7 @@ Root-Coordinator
   Simulator
    {
     Path = mysources/modulo_alarmas.h
-    Parameters = 3.000000e+01,1.000000e+01
+    Parameters = 
    }
   Simulator
    {

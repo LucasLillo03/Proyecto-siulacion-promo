@@ -52,9 +52,6 @@ Coupled
                 }
             Parameters
                 {
-                PCaudalNulo = Val; 0.2 ; 
-                sigma_arr = Val; 180 ; 
-                mediaCaudal = Val; 40 ; 
                 }
             }
         Coupled
@@ -183,8 +180,6 @@ Coupled
                         }
                     Parameters
                         {
-                        tiempoMaximoInicio = Val; 3 ; 
-                        desvioMaximo = Val; 0.05 ; 
                         }
                     }
                 Atomic
@@ -241,8 +236,6 @@ Coupled
                         }
                     Parameters
                         {
-                        tiempoMaximoDesvio = Val; 5 ; 
-                        tiempoMedioHastaCritico = Val; 10 ; 
                         }
                     }
                 Line
@@ -347,8 +340,6 @@ Coupled
                         }
                     Parameters
                         {
-                        periodoMuestreoFlujo = Val; 1 ; 
-                        desvioCaudal = Val; 0.5 ; 
                         }
                     }
                 Atomic
@@ -367,8 +358,6 @@ Coupled
                         }
                     Parameters
                         {
-                        mediaConfirmacion = Val; 20 ; 
-                        desvioConfirmacion = Val; 10 ; 
                         }
                     }
                 Atomic
@@ -387,8 +376,6 @@ Coupled
                         }
                     Parameters
                         {
-                        margenBolsa = Val; 5 ; 
-                        capacidadMaxima = Val; 50 ; 
                         }
                     }
                 Atomic
@@ -425,8 +412,6 @@ Coupled
                         }
                     Parameters
                         {
-                        tiempoConfirmacionCritica = Val; 30 ; 
-                        repeticionAlarmaCritica = Val; 10 ; 
                         }
                     }
                 Atomic

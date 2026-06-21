@@ -12,8 +12,8 @@ va_start(parameters,t);
 //      %Name% is the parameter name
 //	%Type% is the parameter type
 
-mediaConfirmacion = va_arg(parameters, double);
-desvioConfirmacion = va_arg(parameters, double);
+mediaConfirmacion = getScilabVar("mediaConfirmacion");
+desvioConfirmacion = getScilabVar("desvioConfirmacion");
 
 notificacionAlarma = ALARMA_CAUDAL_APAGADA; 
 confirmacionEnfermero = true;

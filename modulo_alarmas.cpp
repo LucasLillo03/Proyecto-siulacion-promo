@@ -19,8 +19,8 @@ sigma_ab = INF_VAL;
 
 estadoCritico = IDLE_CRITICO;
 
-tiempoConfirmacionCritica = va_arg(parameters, double);
-repeticionAlarmaCritica = va_arg(parameters, double);
+tiempoConfirmacionCritica = getScilabVar("tiempoConfirmacionCritica");
+repeticionAlarmaCritica = getScilabVar("repeticionAlarmaCritica");
 }
 double modulo_alarmas::ta(double t) {
     return (sigma_ac < sigma_ab) ? sigma_ac : sigma_ab;

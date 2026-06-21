@@ -9,9 +9,9 @@ void gen_orden_medica::init(double t,...) {
 	//      %Name% is the parameter name
 	//	%Type% is the parameter type
 
-	PCaudalNulo = va_arg(parameters, double);
-	sigma_arr = va_arg(parameters, double);
-	mediaCaudal = va_arg(parameters, double);
+	PCaudalNulo = getScilabVar("PCaudalNulo");
+	sigma_arr = getScilabVar("ordenInterarribo");
+	mediaCaudal = getScilabVar("mediaCaudal");
 
 	actual = 0.0;
 	sigma = sigma_arr;

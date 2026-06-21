@@ -16,8 +16,8 @@ void desvio_caudal_v2::init(double t,...) {
     va_list parameters;
     va_start(parameters,t);
    
-    tiempoMaximoInicio = va_arg(parameters, double);
-    desvioMaximo = va_arg(parameters, double);
+    tiempoMaximoInicio = getScilabVar("tiempoMaximoInicio");
+    desvioMaximo = getScilabVar("desvioMaximo");
 
     caudalRecetado = 0;
     caudalActual = caudalRecetado; 
