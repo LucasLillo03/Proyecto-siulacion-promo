@@ -29,8 +29,17 @@ Desvio caudal:
     se separo el DEVS de desvio caudal en dos componentes:
         - El primero del mismo nombre desvio_Caudal_v2 se encarga de decidir si el caudal esta desviado emitiendo dos tipos de salidas: salidaDesvio y salidaCorreccion.
             La primera salida es booleana y con cada lectura nueva devuelve true si se detecto un desvio o false en caso contrario.
-            La segunda salida devuelve el caudal recetado en caso de haber un desvio, este posteriormente se utilizara para corregir dicho desvio. 
+            La segunda salida devuelve el caudal recetado en caso de haber un desvio o una nueva receta, este posteriormente se utilizara para corregir dicho desvio. 
         - El segundo DEVS, gestor_estados, es el encargado de determinar en que estado se encuentra el sistema, ya sea normal, desviado o critico. Este consta de dos salidas: 
             La primera dirigira alarmas al modulo de alarmas en casos concretos.
             La segunda se encarga de determinar si hay que detener o no la bomba (en caso de estar en estado critico) esta devuelve un booleano al accionador de la bolsa,
             siendo true si la bomba puede continuar y false en caso contrario. 
+
+Accionador de la bolsa: 
+    Se modifico el comportamiento de este componente, ahora tiene tres entradas tal que:
+        0- recibe estadoEstable, un booleano enviado desde el gestor de estados, es true si el estado es estable y false si es critico.
+        1- recibe correccionCaudal, un double que indica que se debe corregir el caudal con el valor enviado, este valor es enviado por desvio_caudal.
+        2- recibe bolsaEstable, un booleano que es true si la bolsa no esta vacia y false en caso contrario. 
+    El DEVS simula una compuerta AND con los puertos 0 y 2, cada vez que recibe un valor por dichos puertos actualiza el valor de sus variables internas. Cuando un valor
+    entra por el puerto 1 este actualiza la salida con el valor ingresado. Asi mismo cuando cualquier valor entra por cualquier puerto, el sistema ejecuta la condicion 
+    (estadoEstable && bolsaEstable), si esta resulta verdadera devuelve el valor de salida real, caso contrario devuelve 0. 
