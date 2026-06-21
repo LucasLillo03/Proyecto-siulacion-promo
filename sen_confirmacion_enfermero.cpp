@@ -40,7 +40,7 @@ double valorAlarma = *(AlarmaCaudal*)x.value;
 	if (valorAlarma == ALARMA_CRITICA && !confirmacionPendiente){
 		sigma = std::abs(randomNormal(mediaConfirmacion, desvioConfirmacion));
 		confirmacionPendiente = true;
-        printLog("confirmacion generada %.2f sigma: %.2f \n", t, sigma);
+        // printLog("confirmacion generada %.2f sigma: %.2f \n", t, sigma);
 	}
 	sigma = std::max(0.0, sigma - e);
 }
