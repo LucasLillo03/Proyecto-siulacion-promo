@@ -42,7 +42,7 @@ void accionador_bolsa::dext(Event x, double t) {
 
     }
     // 
-    if(x.port == PUERTO_CORRECCION_CAUDAL){
+    else if(x.port == PUERTO_CORRECCION_CAUDAL){
         RangoCaudalRecetado caudalEntrante = *(RangoCaudalRecetado*)x.value;
         
         ultimaSalida = caudalEntrante;

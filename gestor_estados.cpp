@@ -15,7 +15,7 @@ void gestor_estados::registrarEstado(double t) {
 
 //inputs ports
 #define PUERTO_CONFIRMACION_ENFERMERO 0 //bool
-#define PUERTO_DESVIO 1 //RangoCaudalRecetado
+#define PUERTO_DESVIO 1 //bool
 
 //outputs ports
 #define PUERTO_ALARMA 0
